@@ -555,12 +555,11 @@ h6 {
   }
 }
 
-@media (min-width: 796px) { /* 1280 */
-
-  /* .mobile-nav-show,
+@media (min-width: 992px) { /* 1280 */
+  .mobile-nav-show,
   .mobile-nav-hide {
     display: none;
-  } */
+  }
 }
 
 /*--------------------------------------------------------------
