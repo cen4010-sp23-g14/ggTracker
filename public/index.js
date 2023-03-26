@@ -16,3 +16,20 @@ function getGamesList() {
         }
     })
 }
+
+function retrieveAccessToken() {
+    $.ajax({
+        url: `http://localhost:5678/token`,
+        type: "POST",
+        async: true,
+        success: function (response) {
+            console.log("we've retrieved the token'!");
+            console.log("That token data is: ", response);
+            console.log(response)
+        },
+        error: function (xhr) {
+            console.log("Unable to retrieve token data");
+            console.dir(xhr);
+        }
+    })
+}
