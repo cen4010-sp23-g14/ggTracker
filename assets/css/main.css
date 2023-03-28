@@ -262,7 +262,7 @@ h6 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  animation: appear 800ms ease-in 0ms forwards, disappear 1600ms ease-in 700ms forwards;
+  animation: appear 800ms ease-in 0ms forwards, disappear 1600ms ease-in 400ms forwards;
 }
 
 .preloader-logo {
@@ -1305,6 +1305,31 @@ h6 {
   100% {
     transform: rotate(360deg);
   }
+}
+
+/*--------------------------------------------------------------
+# Banner Section
+--------------------------------------------------------------*/
+
+.banner-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  max-width: none;
+  margin: 0 auto;
+  width: 100%;
+  background-color: red;
+}
+
+.banner-img {
+  background-color: #ccc;
+  width: 100%;
+}
+
+.banner-title {
+  position: absolute;
+  margin-top: 100px;
 }
 
 /*--------------------------------------------------------------
