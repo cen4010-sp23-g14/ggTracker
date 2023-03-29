@@ -1353,7 +1353,58 @@ h6 {
   text-align: center;
   text-shadow: 0px 0px 15px #000000;
   text-transform: uppercase;
-  font-size: 42pt;
+  font-size: 5vw;
+}
+
+/*--------------------------------------------------------------
+# Information Section
+--------------------------------------------------------------*/
+
+#info {
+  position: relative;
+}
+
+.information-wrapper {
+  display: grid;
+  grid-template-columns: 15% 70% 15%;
+  /* position: absolute;
+  width: 100%;
+  top: 80%;
+  transform: translateY(-30%); */
+}
+
+.info__left-side-wrapper, .info__right-side-wrapper {
+  background-color: none;
+  padding-top: 120px;
+  padding-bottom: 60px;
+}
+
+.info__left-side, .info__right-side {
+  padding: 30px 10px 60px 10px;
+  text-align: center;
+  background-color: #383439;
+  border-radius: 16px;
+}
+
+.info__center {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto auto;
+  background-color: #5a1515; /* #161616 */
+  border-radius: 16px;
+}
+
+.central-information__wrapper {
+  width: 100%;
+  padding: 30px 10px 10px 10px;
+}
+
+.secondary-information__wrapper {
+  position: relative;
+}
+
+.central-information__main, .statistics {
+  text-align: center;
 }
 
 /*--------------------------------------------------------------
