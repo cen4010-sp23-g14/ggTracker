@@ -1427,8 +1427,12 @@ h6 {
 .ratings-wrapper {
     text-align: left;
     border: 2px solid #3f8bfc;
-    border-radius: 12px;
+    border-radius: 24px;
     margin: 6px 0px 6px 0px;
+}
+
+.ratings-wrapper {
+    margin-bottom: 24px;
 }
 
 .reviews {
@@ -1445,11 +1449,29 @@ h6 {
     padding: 0px 3px 0px 3px;
 }
 
+.ratings-wrapper p {
+    display: block;;
+    margin: 0px;
+    padding: 0px;
+}
+
+.ratings-total {
+    color: #ABABAB;
+}
+
 
 /* Text */
 
 .ratings-title {
-    font-size: 25px;
+    font-size: 35px;
+}
+
+.ratings-title span {
+    color: #AF8ADD;
+}
+
+.ratings-stars {
+    font-size: 60px;
 }
 
 
