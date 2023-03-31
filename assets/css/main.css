@@ -1376,7 +1376,7 @@ h6 {
     text-align: center;
     background-color: #383439;
     border-radius: 16px;
-    height: 700px;
+    height: 100%;
 }
 
 .info__center {
@@ -1413,8 +1413,43 @@ h6 {
 }
 .statistics > div {
     text-align: center;
-    border: 2px solid #24dce6;
     border-radius: 12px;
+}
+
+.publication {
+    padding-left: 12px;
+}
+.publication > div {
+    text-align: left;
+    border-radius: 12px;
+    margin: 6px 0px 0px 0px;
+}
+.public-dates__grid {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: repeat(auto);
+}
+.public-dates__date {
+    text-align: left;
+}
+
+.information-wrapper .container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    height: 100%;
+} 
+.side-tab {
+    margin: 12px;
+}
+.side-tabs__wrapper {
+    position: sticky;
+    bottom: 20rem;
+    align-self: flex-end;
+}
+
+.gallery-title__wrapper {
+    padding-left: 12px;
 }
 
 
@@ -1423,17 +1458,20 @@ h6 {
 .general-information,
 .statistics,
 .publication,
-.review-snippet,
+.review-snippet {
+    text-align: center;
+    border-radius: 12px;
+}
+
 .game-gallery {
     text-align: center;
-    border: 2px solid #2cbc85;
     border-radius: 12px;
+    margin-top: 12px;
 }
 
 .general-info__inner-wrapper,
 .general-info__image-wrapper {
     text-align: center;
-    border: 2px solid #18e1eb;
     border-radius: 12px;
     margin: 6px 3px 6px 3px;
 }
@@ -1444,7 +1482,6 @@ h6 {
 
 .ratings-wrapper {
     text-align: left;
-    border: 2px solid #3f8bfc;
     border-radius: 24px;
     margin: 6px 0px 6px 0px;
 }
@@ -1455,7 +1492,6 @@ h6 {
 
 .reviews {
     text-align: center;
-    border: 2px solid #eee421;
     border-radius: 12px;
     margin-top: 12px;
 }
@@ -1467,14 +1503,13 @@ h6 {
     padding: 0px 3px 0px 3px;
 }
 
-.ratings-wrapper p, .statistics p {
+p {
     margin: 0px;
     padding: 0px;
 }
 
 .summary-wrapper {
     text-align: left;
-    border: 2px solid #3f8bfc;
     border-radius: 24px;
     margin-top: 6px;
 }
@@ -1518,6 +1553,21 @@ h6 {
 }
 .statistics p {
     font-size: 1.2vw;
+}
+.publication span {
+    font-size: 2vw;
+}
+.publication p {
+    color: #ABABAB;
+    font-size: 1.2vw;
+}
+.side-tab p {
+    font-size: 1.2vw;
+}
+.side-tab span {
+    font-size: 2vw;
+    color: #C0FAAC;
+    line-height: 80%;
 }
 
 
