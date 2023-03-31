@@ -9,11 +9,14 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
         <link rel="stylesheet" href="">
     </head>
-    <body onload="retrieveAccessToken()">
+    <!-- <body onload="retrieveAccessToken()"> -->
+      <body>
         <p>Hello world! This is the ggTracker Project for group 14!</p>
         <div id="test">
-            <button id="get-games-list" onclick="getGamesList()">Load Games</button>
+            <button id="get-token-button" onclick="getToken()">Make token request</button>
+            <button id="get-game-data-button" onclick="getGamesList()">Get Games List</button>
         </div>
         <script src="" async defer></script>
         <script src="index.js"></script>
+      </body>
 </html>
