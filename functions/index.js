@@ -22,7 +22,23 @@ app.use((req, res, next) => {
   next();
 });
 
-app.post("/test", async (req, res) => {
+app.post("/token", async (req, res) => {
+  const tokenUrl = "https://id.twitch.tv/oauth2/token?client_id=" + process.env.TWITCH_CLIENT_ID + "&client_secret=" + process.env.CLIENT_SECRET + "&grant_type=client_credentials";
+  axios({
+    url: tokenUrl,
+    method: "POST",
+  })
+      .then((response) => {
+        process.env.TWITCH_APP_ACCESS_TOKEN = response.data.access_token;
+        res.status(200).send(response.data);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(404).send({data: "Error getting token data!"});
+      });
+});
+
+app.post("/processGameData", async (req, res) => {
   try {
     let gamesList = [];
     // get the token
@@ -30,6 +46,7 @@ app.post("/test", async (req, res) => {
     let accessToken = responseToken.data.access_token;
     process.env.TWITCH_APP_ACCESS_TOKEN = accessToken;
 
+    // Get the list of games
     let gameResponse = await axios({
       url: "https://api.igdb.com/v4/games",
       method: "POST",
@@ -42,9 +59,10 @@ app.post("/test", async (req, res) => {
     })
         .then((response) => {
           gamesList = response.data;
+          let testCover = response.data;
           let convertedGamesList = [];
-          let testGamesList = [];
 
+          // process the games data into an object that only has the data we need
           for (let i = 0; i < response.data.length; i++) {
             if (response.data[i].cover == null) {
               const convertedGame = {
@@ -63,20 +81,7 @@ app.post("/test", async (req, res) => {
               convertedGamesList.push(convertedGame);
             }
           }
-
           res.status(200).send(convertedGamesList);
-          // forEach (game in response.data) {
-          //   if (game.cover != null) {
-          //   let url = getCovers(game.cover);
-          //   const convertedGame = {
-          //     name: game.name,
-          //     summary: game.summary,
-          //     coverUrl: url
-          //   }
-          // } else {
-          //   console.log("you suck");
-          // }
-          // }
         })
         .catch((err) => {
           console.error(err);
@@ -86,83 +91,6 @@ app.post("/test", async (req, res) => {
     res.status(400).send(error);
   }
 });
-
-app.post("/test2", async (req, res) => {
-  try {
-    const gameResponse = await axios.post("https://api.igdb.com/v4/games", {
-      data: "limit 50; fields name, cover, summary;",
-    }, {
-      headers: {
-        "Accept": "application/json",
-        "Client-ID": process.env.TWITCH_CLIENT_ID,
-        "Authorization": "bearer " + process.env.TWITCH_APP_ACCESS_TOKEN,
-      },
-    });
-    res.status(200).send(gameResponse.data);
-  } catch (err) {
-    res.status(400).send(err);
-  }
-});
-
-app.post("/token", async (req, res) => {
-  const tokenUrl = "https://id.twitch.tv/oauth2/token?client_id=" + process.env.TWITCH_CLIENT_ID + "&client_secret=" + process.env.CLIENT_SECRET + "&grant_type=client_credentials";
-  axios({
-    url: tokenUrl,
-    method: "POST",
-  })
-      .then((response) => {
-        process.env.TWITCH_APP_ACCESS_TOKEN = response.data.access_token;
-        res.status(200).send(response.data);
-      })
-      .catch((err) => {
-        console.error(err);
-        res.status(404).send({data: "Error getting token data!"});
-      });
-});
-
-app.post("/search", async (req, res) => {
-  let gameResponse = await axios({
-    url: "https://api.igdb.com/v4/games",
-    method: "POST",
-    headers: {
-      "Accept": "application/json",
-      "Client-ID": process.env.TWITCH_CLIENT_ID,
-      "Authorization": "bearer " + process.env.TWITCH_APP_ACCESS_TOKEN,
-    },
-    data: "limit 50; fields artworks,bundles,category,cover,genres,involved_companies,name,parent_game,platforms,rating,rating_count,release_dates,screenshots,summary,total_rating,total_rating_count,url,videos;",
-  })
-      .then((response) => {
-        res.status(200).send(response.data);
-        console.log(response.data);
-      })
-      .catch((err) => {
-        console.error(err);
-        res.status(404).send(err);
-      });
-});
-
-// app.post("/getCover", async (req, res) => {
-//   let id = req.body.id;
-//   console.log("The id passed on the backend is: " + id);
-//   axios({
-//     url: "https://api.igdb.com/v4/covers",
-//     method: "POST",
-//     headers: {
-//       "Accept": "application/json",
-//       "Client-ID": process.env.TWITCH_CLIENT_ID,
-//       "Authorization": "bearer " + process.env.TWITCH_APP_ACCESS_TOKEN,
-//     },
-//     data: "fields game, height, image_id, url, width; where game = " + id + ";",
-//   })
-//       .then((response) => {
-//         res.status(200).send(response.data);
-//         console.log(response.data);
-//       })
-//       .catch((err) => {
-//         console.error(err);
-//         res.status(404).send({data: "the id you passed in is: " + id});
-//       });
-// });
 
 async function getCovers(id) {
   console.log("The id passed on the backend is: " + id);
@@ -177,7 +105,7 @@ async function getCovers(id) {
     data: "fields game, height, image_id, url, width; where game = " + id + ";",
   })
       .then((response) => {
-        return response.data.url;
+        return response.data;
       })
       .catch((err) => {
         console.error(err);
