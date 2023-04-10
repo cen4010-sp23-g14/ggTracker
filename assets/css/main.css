@@ -73,6 +73,9 @@ h6 {
     font-family: var(--font-primary);
 }
 
+.hidden {
+    display: none;
+}
 
 /*--------------------------------------------------------------
 # Sections & Section Header
@@ -895,6 +898,43 @@ h6 {
     margin: 0;
 }
 
+/*--------------------------------------------------------------
+# Settings Section
+--------------------------------------------------------------*/
+
+.settings-page-wrap {
+    margin: 26px;
+    border-radius: 12px;
+    height: 100vh;
+    background-color: #383439;
+    padding: 12px;
+}
+
+.tab-content {
+    width: 100%;
+}
+
+.tab-content .tab-container {
+    padding: 24px;
+    min-width: 100%;
+    border-radius: 6px;
+    background-color: #5b545d;
+}
+
+.settings-nav-container > button {
+    margin-bottom: 24px;
+}
+
+.settings-nav-container > button[aria-selected="true"] {
+    background-color: #8A778A !important;
+}
+.settings-nav-container > button[aria-selected="false"] {
+    color: #8A778A !important;
+}
+.settings-nav-container > button[aria-selected="false"]:hover {
+    color: #ffffff !important;
+} 
+
 
 /*--------------------------------------------------------------
 # Gallery Single Section
@@ -1586,7 +1626,7 @@ p {
 
 .hero h2 {
     margin: 0 0 10px 0;
-    font-size: 38px;
+    font-size: 4vw;
     font-weight: 700;
     color: #fff;
     font-family: var(--font-secondary);
@@ -1608,6 +1648,38 @@ p {
     right: 0;
     background: var(--color-primary);
     z-index: -1;
+}
+
+.hero .user-change-img-prompt {
+    color: #ABABAB;
+    font-size: 1.2vw;
+    padding-top: 6px;
+}
+
+.hero .settings-wrapper {
+    width: 100%;
+    max-height: 20vh;
+    padding: 0px 24px 0px 48px;
+}
+
+.hero .grid {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+    align-items: left;
+    max-width: 36vw;
+    text-align: left;
+}
+
+.hero .user-pfp {
+    border-radius: 50%;
+    max-height: 16vh;
+}
+
+.hero .user-pfp:hover {
+    transform: scale(1.1);
+    opacity: .75;
+    transition: transform 130ms ease-in-out, opacity 130ms ease-in-out;
 }
 
 .hero hr.solid {
