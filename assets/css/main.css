@@ -905,18 +905,24 @@ h6 {
 .settings-page-wrap {
     margin: 26px;
     border-radius: 12px;
-    height: 100vh;
+    min-height: 50vh;
     background-color: #383439;
     padding: 12px;
 }
 
-.tab-content {
-    width: 100%;
+.settings-page-wrap > div {
+    height: 100%;
 }
 
-.tab-content .tab-container {
+.tab-content {
+    width: 100%;
+    height: 100%;
+}
+
+.tab-container {
     padding: 24px;
     min-width: 100%;
+    min-height: 100%;
     border-radius: 6px;
     background-color: #5b545d;
 }
@@ -934,6 +940,86 @@ h6 {
 .settings-nav-container > button[aria-selected="false"]:hover {
     color: #ffffff !important;
 } 
+
+.change-name__tab-contents {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    text-align: center;
+    vertical-align: middle;
+    min-height: 100%;
+}
+
+.change-username__input, .change-password__input {
+    font-family: var(--font-primary);
+    letter-spacing: 1px;
+    font-size: 13px;
+    font-weight: 400;
+    white-space: nowrap;
+    transition: 0.3s;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    color: #222425;
+    padding: 5px 10px 5px 10px;
+    width: 18vw;
+}
+
+.list-item__mini {
+    text-align: center;
+    width:100%;
+    margin: auto;
+}
+.list-item__mini h2{
+    width: inherit;
+    padding-top: 6px;
+}
+
+@media (min-width: 1188px) {
+    .view-lists__tab-contents {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        grid-gap: 6px;
+    }
+    .list-thumbnail__mini {
+        display: block;
+        border: 2px solid #AF8ADD;
+        border-radius: 6px;
+        max-height: 32vh;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+@media (max-width: 1187px) and (min-width: 900px) {
+    .view-lists__tab-contents {
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-gap: 6px;
+    }
+    .list-thumbnail__mini {
+        display: block;
+        border: 2px solid #AF8ADD;
+        border-radius: 6px;
+        max-height: 32vh;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+@media (max-width: 899px) {
+    .view-lists__tab-contents {
+        display: grid;
+        grid-template-columns: auto;
+        grid-gap: 6px;
+    }
+    .list-thumbnail__mini {
+        display: block;
+        border: 2px solid #AF8ADD;
+        border-radius: 6px;
+        max-height: 28vh;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
 
 
 /*--------------------------------------------------------------
