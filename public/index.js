@@ -11,6 +11,7 @@ function getToken() {
             console.log("We've made a sucessful post request!");
             console.log("The data is: ", response);
             console.log(response);
+            buildHomeScreen(response)
         },
         error: function (error) {
             console.log("Something went wrong with our test");
@@ -27,7 +28,7 @@ function getGamesList() {
         async: true,
         success: function (response) {
             gamesList = response;
-            console.log(gamesList)
+            // console.log(gamesList)
 
             buildHomeScreen(gamesList);
         },
@@ -60,7 +61,46 @@ function getCover(cover_id) {
 }
 
 function buildHomeScreen(gamesList) {
-    let homescreen = document.getElementById("insert-covers")
+    // get id to insert
+    const insertCoversDiv = document.getElementById("insert-covers");
 
+    // build html
 
+    for (i = 0; i < 20; i++) {
+        const divColumns = document.createElement("div")
+        const divGalleryItem = document.createElement("div")
+        var image = document.createElement("img")
+        const imageSettings = document.createElement("div");
+
+        divColumns
+            .classList
+            .add("col-xl-3", "col-lg-4", "col-md-6");
+        divGalleryItem
+            .classList
+            .add("gallery-item", "h-100");
+        image.src = "assets/img/gallery/gallery_test.jpg"
+        image
+            .classList
+            .add("img-fluid");
+        imageSettings
+            .classList
+            .add("gallery-links", "d-flex", "align-items-center", "justify-content-center");
+
+        insertCoversDiv.append(divColumns);
+        divColumns.append(divGalleryItem);
+        divGalleryItem.append(image);
+        divGalleryItem.append(imageSettings);
     }
+}
+
+/*
+          <div class="col-xl-3 col-lg-4 col-md-6">
+            <div class="gallery-item h-100">
+              <img src="assets/img/gallery/gallery_test.jpg" class="img-fluid" alt="">
+              <div class="gallery-links d-flex align-items-center justify-content-center">
+                <a href="assets/img/gallery/gallery_test.jpg" title="Gallery 2" class="glightbox preview-link"><i class="bi bi-arrows-angle-expand"></i></a>
+                <a href="gallery-single.html" class="details-link"><i class="bi bi-link-45deg"></i></a>
+              </div>
+            </div>
+          </div><!-- End Gallery Item -->
+    */
