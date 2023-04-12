@@ -1767,7 +1767,6 @@ p {
     border-radius:50%;
     height: 16vh;
     width: 16vh;
-    background-color: #2cbc85;
     color: transparent;
 }
 
@@ -1779,6 +1778,7 @@ p {
     right: 0;
     margin: auto;
     transform: translateY(-50%);
+    pointer-events: none;
 }
 
 .settings-pfp__wrapper .user-pfp {
@@ -1788,13 +1788,22 @@ p {
 }
 
 .settings-pfp__wrapper:hover {
-    transform: scale(1.1);
-    filter: grayscale(100%);
     transition: all 130ms ease-in-out;
     color: white;
     box-shadow: 0 0 10px 0 rgba(255,255,255,.35);
     text-shadow: 1px 1px 1em #000;
     
+}
+
+.user-pfp:hover {
+    transition: all 130ms ease-in-out;
+    opacity: 0.3;
+    filter: blur(1px);
+    -moz-filter: blur(1px);
+    -webkit-filter: blur(1px);
+    -o-filter: blur(1px);
+    transform: scale(1.1);
+    filter: grayscale(100%);
 }
 
 
