@@ -66,11 +66,13 @@ function buildHomeScreen(gamesList) {
 
     // build html
 
-    for (i = 0; i < 20; i++) {
+    for (i = 0; i < gamesList.length; i++) {
         const divColumns = document.createElement("div")
         const divGalleryItem = document.createElement("div")
         var image = document.createElement("img")
         const imageSettings = document.createElement("div");
+        var gameTitlePara = document.createElement("p");
+        var gameTitleNode = document.createTextNode(gamesList[i].name);
 
         divColumns
             .classList
@@ -78,18 +80,23 @@ function buildHomeScreen(gamesList) {
         divGalleryItem
             .classList
             .add("gallery-item", "h-100");
-        image.src = "assets/img/gallery/gallery_test.jpg"
+        image.src = "assets/img/cover-not-found.png"
         image
             .classList
             .add("img-fluid");
         imageSettings
             .classList
             .add("gallery-links", "d-flex", "align-items-center", "justify-content-center");
+        
+        gameTitlePara.classList.add("gallery-links", "d-flex", "align-items-center", "justify-content-center");
+        
 
         insertCoversDiv.append(divColumns);
         divColumns.append(divGalleryItem);
         divGalleryItem.append(image);
         divGalleryItem.append(imageSettings);
+        divGalleryItem.append(gameTitlePara);
+        gameTitlePara.appendChild(gameTitleNode)
     }
 }
 
