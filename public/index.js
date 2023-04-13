@@ -1,5 +1,6 @@
 let gamesList = [];
 let cover_url = "";
+window.selectedGame = null
 
 function getToken() {
     $.ajax({
@@ -69,7 +70,7 @@ function buildHomeScreen(gamesList) {
     for (i = 0; i < gamesList.length; i++) {
         const divColumns = document.createElement("div")
         const divGalleryItem = document.createElement("div")
-        var image = document.createElement("img")
+        var image = `<img src="assets/img/cover-not-found.png" alt="${gamesList[i].name}" class="img-fluid cover-image"/>`;
         const imageSettings = document.createElement("div");
         var gameTitlePara = document.createElement("p");
         var gameTitleNode = document.createTextNode(gamesList[i].name);
@@ -79,11 +80,8 @@ function buildHomeScreen(gamesList) {
             .add("col-xl-3", "col-lg-4", "col-md-6");
         divGalleryItem
             .classList
-            .add("gallery-item", "h-100");
+            .add(`${i}`, "gallery-item", "h-100");
         image.src = "assets/img/cover-not-found.png"
-        image
-            .classList
-            .add("img-fluid");
         imageSettings
             .classList
             .add("gallery-links", "d-flex", "align-items-center", "justify-content-center");
@@ -93,21 +91,19 @@ function buildHomeScreen(gamesList) {
 
         insertCoversDiv.append(divColumns);
         divColumns.append(divGalleryItem);
-        divGalleryItem.append(image);
+        divGalleryItem.insertAdjacentHTML("beforeend", image);
         divGalleryItem.append(imageSettings);
         divGalleryItem.append(gameTitlePara);
         gameTitlePara.appendChild(gameTitleNode)
+
+        divGalleryItem.addEventListener("click", (event) => {
+            let test = event.currentTarget.className.split(" ");
+            selectedGame = gamesList[test[0]];
+            localStorage.setItem('gameName', selectedGame.name);
+            localStorage.setItem('gameSummary', selectedGame.summary)
+            location.href = "/details.html";
+        }); 
     }
 }
 
-/*
-          <div class="col-xl-3 col-lg-4 col-md-6">
-            <div class="gallery-item h-100">
-              <img src="assets/img/gallery/gallery_test.jpg" class="img-fluid" alt="">
-              <div class="gallery-links d-flex align-items-center justify-content-center">
-                <a href="assets/img/gallery/gallery_test.jpg" title="Gallery 2" class="glightbox preview-link"><i class="bi bi-arrows-angle-expand"></i></a>
-                <a href="gallery-single.html" class="details-link"><i class="bi bi-link-45deg"></i></a>
-              </div>
-            </div>
-          </div><!-- End Gallery Item -->
-    */
+// const myArray = text.split(" ");

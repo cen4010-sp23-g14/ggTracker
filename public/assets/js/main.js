@@ -174,15 +174,19 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * Profile Picker Button
    */
-  var profile_button = document.querySelector('.settings-pfp__wrapper');
-  var profile_input = document.querySelector('.pfp-form');
-  var profile_img = document.querySelector('.user-pfp');
-  profile_input.addEventListener('change', (event) => {
-    console.log(event.target.files[0]);
-    profile_img.src = URL.createObjectURL(event.target.files[0]);
-  });
-  profile_button.addEventListener('click', () => {
-    profile_input.click();
-  });
 
+  if(document.querySelector('.settings-pfp__wrapper') == null || document.querySelector('.pfp-form') == null) {
+    return 
+  } else {
+    var profile_button = document.querySelector('.settings-pfp__wrapper');
+    var profile_input = document.querySelector('.pfp-form');
+    var profile_img = document.querySelector('.user-pfp');
+    profile_input.addEventListener('change', (event) => {
+      console.log(event.target.files[0]);
+      profile_img.src = URL.createObjectURL(event.target.files[0]);
+    });
+    profile_button.addEventListener('click', () => {
+      profile_input.click();
+    });
+  }
 });
