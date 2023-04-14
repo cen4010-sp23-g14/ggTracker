@@ -466,7 +466,7 @@ h6 {
     .navbar input:hover,
     .navbar input:checked {
         background-color: #fafafa;
-        color: #AF8ADD;
+        color: #3E105A;
         text-decoration: none;
         -webkit-touch-callout: none;
         -webkit-user-select: none;
@@ -1883,4 +1883,127 @@ p {
 .green-box {
     border: solid #5bd9a9 2px;
     border-radius: 5px;
+}
+
+/*--------------------------------------------------------------
+# Sign In Pop Up
+--------------------------------------------------------------*/
+@media (min-width: 992px) {
+    .login-popup {
+        position: fixed;
+        right: 25%;
+        top: 25%;
+    }
+
+    .login-popup__container {
+        min-width: 50vw;
+        min-height: 50vh;
+        background-color: rgba(52, 43, 56, 0.9);
+        border-radius: 24px;
+    }
+    
+    .login-popup__wrapper {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        padding: 0px 32px 24px 32px;
+        justify-content: space-between;
+    }
+    
+    .login-popup__grid-item {
+        display: flex;
+        flex-direction: column;
+        margin: 24px;
+        align-items: center;
+        opacity: .3;
+    }
+
+    .login-popup__grid-item:hover {
+        opacity: 1;
+        transition: 0.3s ease-in-out;
+    }
+
+    .login-popup input {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 5px 0 5px 10px;
+        margin: 3vh 0px;
+        font-family: var(--font-primary);
+        letter-spacing: 1px;
+        font-size: 13px;
+        font-weight: 400;
+        white-space: nowrap;
+        transition: 0.3s;
+        background-color: #AF8ADD;
+        border: none;
+        border-radius: 12px;
+        color: #fafafa;
+        width: 18vw;
+    }
+    .login-popup input:hover,
+    .login-popup input:checked {
+        background-color: #fafafa;
+        color: #3E105A;
+        text-decoration: none;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    .login-popup p {
+        color:rgba(255, 255, 255, 0.5);
+        display: none;
+    }
+
+    .login-popup button {
+        font-family: var(--font-primary);
+        letter-spacing: 1px;
+        font-size: 13px;
+        font-weight: 400;
+        white-space: nowrap;
+        transition: 0.3s;
+        background-color: #5bd9a9;
+        border: none;
+        border-radius: 12px;
+        color: #161616;
+        padding: 12px;
+    }
+    .login-popup button:hover, 
+    .login-popup__header button:hover {
+        transition: 0.3s;
+        opacity: 1;
+        background-color: #82f1c7;
+        border: none;
+        border-radius: 8px;
+        color: #0e2715;
+    }
+
+    .login-popup__header button {
+        padding: 12px;
+        margin: 12px;
+        color: #161616;
+        opacity: .3;
+        min-width: 42px;
+        font-family: var(--font-primary);
+        letter-spacing: 1px;
+        font-size: 13px;
+        font-weight: 400;
+        white-space: nowrap;
+    }
+}
+
+.popup-hide {
+    transform: translateX(10000px);
+    transition: 3s ease-in-out;
+}
+.popup-appear {
+    opacity: 1;
+    transition: .3s ease-in-out;
+}
+.blur {
+    filter: blur(12px);
+    transition: .3s ease-in-out;
 }
