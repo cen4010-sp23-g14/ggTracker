@@ -2,7 +2,7 @@ let gamesList = [];
 let cover_url = "";
 window.selectedGame = null
 
-function getToken() {
+function getGameData() {
     $.ajax({
         url: `https://us-central1-ggtracker-27309.cloudfunctions.net/app/processGameData`,
         crossOrigin: true,
@@ -68,9 +68,9 @@ function buildHomeScreen(gamesList) {
     // build html
 
     for (i = 0; i < gamesList.length; i++) {
+        var image = ``;
         const divColumns = document.createElement("div")
         const divGalleryItem = document.createElement("div")
-        var image = `<img src="assets/img/cover-not-found.png" alt="${gamesList[i].name}" class="img-fluid cover-image"/>`;
         const imageSettings = document.createElement("div");
         var gameTitlePara = document.createElement("p");
         var gameTitleNode = document.createTextNode(gamesList[i].name);
@@ -81,7 +81,14 @@ function buildHomeScreen(gamesList) {
         divGalleryItem
             .classList
             .add(`${i}`, "gallery-item", "h-100");
-        image.src = "assets/img/cover-not-found.png"
+
+        if(gamesList[i].coverUrl != -1) {
+            image = `<img src="${gamesList[i].coverUrl}" alt="${gamesList[i].name}" class="img-fluid cover-image"/>`;
+        } else {
+            image = `<img src="assets/img/cover-not-found.png" alt="${gamesList[i].name}" class="img-fluid cover-image"/>`;
+            image.src = "assets/img/cover-not-found.png"
+        }
+
         imageSettings
             .classList
             .add("gallery-links", "d-flex", "align-items-center", "justify-content-center");
@@ -100,7 +107,8 @@ function buildHomeScreen(gamesList) {
             let test = event.currentTarget.className.split(" ");
             selectedGame = gamesList[test[0]];
             localStorage.setItem('gameName', selectedGame.name);
-            localStorage.setItem('gameSummary', selectedGame.summary)
+            localStorage.setItem('gameSummary', selectedGame.summary);
+            localStorage.setItem('coverUrl', selectedGame.coverUrl);
             location.href = "/details.html";
         }); 
     }
