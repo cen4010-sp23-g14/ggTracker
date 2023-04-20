@@ -1507,7 +1507,8 @@ h6 {
 
 .information-wrapper {
     display: grid;
-    grid-template-columns: 15% 70% 15%;
+    /* grid-template-columns: 15% 70% 15%; for three items */ 
+    grid-template-columns: 20% 80%;
 }
 
 .info__left-side-wrapper,
@@ -1537,17 +1538,17 @@ h6 {
     margin: 12px 12px 12px 12px;
 }
 
-.top-information__wrapper hr {
+.information hr {
     border-top: 3px solid #AF8ADD;
     border-radius: 5px;
     text-decoration: none;
 }
 
 .middle-second__wrapper {
-    display: grid;
+    /* display: grid;
     grid-template-columns: auto auto;
-    column-gap: 10px;
-    padding-top: 12px;
+    column-gap: 10px; */
+    padding: 12px 0px;
     max-width: 100%;
 }
 
@@ -1564,6 +1565,9 @@ h6 {
 }
 
 .publication {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    grid-template-rows: repeat();
     padding-left: 12px;
 }
 .publication > div {
@@ -1589,9 +1593,19 @@ h6 {
 .side-tab {
     margin: 12px;
 }
+.side-tab:hover {
+    color: #fff;
+    background-color: #ffffff24;
+    border-radius: 12px;
+    transition: all .3s ease-in-out;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+    cursor: pointer;
+}
 .side-tabs__wrapper {
     position: sticky;
-    bottom: 20rem;
+    bottom: 25%;
     align-self: flex-end;
 }
 
@@ -1605,7 +1619,7 @@ h6 {
 .general-information,
 .statistics,
 .publication,
-.review-snippet {
+.other-info {
     text-align: center;
     border-radius: 12px;
 }
@@ -1707,6 +1721,9 @@ p {
 .publication p {
     color: #ABABAB;
     font-size: 1.2vw;
+}
+.side-tab {
+    margin: 4vh;
 }
 .side-tab p {
     font-size: 1.2vw;
@@ -2004,6 +2021,88 @@ p {
         margin: 12px;
         color: #161616;
         opacity: .3;
+        min-width: 42px;
+        font-family: var(--font-primary);
+        letter-spacing: 1px;
+        font-size: 13px;
+        font-weight: 400;
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 991px) {
+    .login-popup {
+        position: fixed;
+        left: 50%;
+        top: 0%;
+        transform: translate(-50%, 0);
+    }
+
+    .login-popup__container {
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(52, 43, 56, 0.9);
+    }
+    
+    .login-popup__wrapper {
+        padding: 0px 32px 24px 32px;
+    }
+    
+    .login-popup__grid-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        opacity: 1;
+    }
+
+    .login-popup .green-box {
+        opacity: 0;
+    }
+
+    .login-popup input {
+        background-color: #fafafa;
+        color: #3E105A;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 5px 0 5px 10px;
+        margin: 2vh 0px;
+        font-family: var(--font-primary);
+        letter-spacing: 1px;
+        font-size: 13px;
+        font-weight: 400;
+        white-space: nowrap;
+        transition: 0.3s;
+        border: none;
+        border-radius: 12px;
+        width: 32vw;
+    }
+
+    .login-popup p {
+        color:rgba(255, 255, 255, 0.5);
+        display: none;
+    }
+
+    .login-popup button {
+        font-family: var(--font-primary);
+        letter-spacing: 1px;
+        font-size: 13px;
+        font-weight: 400;
+        white-space: nowrap;
+        transition: 0.3s;
+        background-color: #5bd9a9;
+        border: none;
+        border-radius: 12px;
+        color: #161616;
+        padding: 12px;
+    }
+
+    .login-popup__header button {
+        padding: 12px;
+        margin-left: 18px;
+        margin-top: 18vh;
+        color: #161616;
+        opacity: 1;
         min-width: 42px;
         font-family: var(--font-primary);
         letter-spacing: 1px;
