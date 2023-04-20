@@ -31,5 +31,7 @@ function buildDetailsScreen() {
 }
 
 window.onbeforeunload = function (e) {
+    if(retrievedGameName != localStorage.getItem("gameName")) {
     localStorage.clear();
+    }
 };

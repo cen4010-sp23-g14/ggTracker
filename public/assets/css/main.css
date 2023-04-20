@@ -1932,7 +1932,8 @@ p {
     }
 
     .login-popup__container {
-        min-width: 75vw;
+        max-width: 60vw;
+        min-width: 800px;
         min-height: 50vh;
         background-color: rgba(52, 43, 56, 0.9);
         border-radius: 24px;
@@ -1974,7 +1975,7 @@ p {
         border: none;
         border-radius: 12px;
         color: #fafafa;
-        width: 32vw;
+        width: 100%;
     }
     .login-popup input:hover,
     .login-popup input:checked {
