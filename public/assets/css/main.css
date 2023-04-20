@@ -1926,12 +1926,13 @@ p {
 @media (min-width: 992px) {
     .login-popup {
         position: fixed;
-        right: 25%;
+        left: 50%;
         top: 25%;
+        transform: translate(-50%, 0);
     }
 
     .login-popup__container {
-        min-width: 50vw;
+        min-width: 75vw;
         min-height: 50vh;
         background-color: rgba(52, 43, 56, 0.9);
         border-radius: 24px;
@@ -2056,7 +2057,8 @@ p {
     }
 
     .login-popup .green-box {
-        opacity: 0;
+        margin: 2vh 24vw;
+        opacity: .3;
     }
 
     .login-popup input {
@@ -2066,7 +2068,7 @@ p {
         align-items: center;
         justify-content: space-between;
         padding: 5px 0 5px 10px;
-        margin: 2vh 0px;
+        margin: 4vh 0px;
         font-family: var(--font-primary);
         letter-spacing: 1px;
         font-size: 13px;
@@ -2075,7 +2077,7 @@ p {
         transition: 0.3s;
         border: none;
         border-radius: 12px;
-        width: 32vw;
+        width: vw;
     }
 
     .login-popup p {
@@ -2099,8 +2101,7 @@ p {
 
     .login-popup__header button {
         padding: 12px;
-        margin-left: 18px;
-        margin-top: 18vh;
+        margin: 18px 0 0 18px;
         color: #161616;
         opacity: 1;
         min-width: 42px;
