@@ -1940,7 +1940,7 @@ p {
     
     .login-popup__wrapper {
         display: grid;
-        grid-template-columns: auto auto auto;
+        grid-template-columns: 49% auto 49%;
         padding: 0px 32px 24px 32px;
         justify-content: space-between;
     }
@@ -1974,7 +1974,7 @@ p {
         border: none;
         border-radius: 12px;
         color: #fafafa;
-        width: 18vw;
+        width: 32vw;
     }
     .login-popup input:hover,
     .login-popup input:checked {
@@ -2077,7 +2077,11 @@ p {
         transition: 0.3s;
         border: none;
         border-radius: 12px;
-        width: vw;
+        width: 64vw;
+    }
+
+    .login-popup input::placeholder {
+        color: #5b545d;
     }
 
     .login-popup p {
