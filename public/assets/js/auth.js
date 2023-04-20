@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function appearLogin (){
         let popup = document.querySelector('.login-popup');
         let main = document.querySelector('main');
-        popup.classList.remove('opacity');
+        popup.classList.remove('hidden');
         popup.classList.remove('popup-hide');
         popup.classList.add('popup-appear');
         main.classList.add('blur');

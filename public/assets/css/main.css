@@ -75,9 +75,11 @@ h6 {
 
 .hidden {
     display: none;
+    transition: .3ms ease-in-out;
 }
 .opacity {
     opacity: 0;
+    transition: .3ms ease-in-out;
 }
 
 /*--------------------------------------------------------------
@@ -405,20 +407,16 @@ h6 {
 }
 
 .header .login-name {
-    padding-right: 15px;
+    padding: 15px;
+    cursor: pointer;
 }
 
-.header .login-name a {
-    color: #fafafa;
-    padding-left: 15px;
-    display: inline-block;
-    line-height: 0px;
+.header .login-name:hover {
     transition: 0.3s;
-    font-size: 16px;
-}
-
-.header .login-name a:hover {
-    color: #fff;
+    background-color: #82f1c7;
+    border: none;
+    border-radius: 8px;
+    color: #0e2715;
 }
 
 @media (max-width: 575px) {
@@ -899,6 +897,12 @@ h6 {
 .glightbox-clean .gslide-title {
     color: rgba(255, 255, 255, 0.8);
     margin: 0;
+}
+
+.gallery-item p {
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 }
 
 /*--------------------------------------------------------------
@@ -1996,14 +2000,15 @@ p {
 }
 
 .popup-hide {
-    transform: translateX(10000px);
-    transition: 3s ease-in-out;
+    display: none;
+    transition: .3s ease-in-out;
 }
 .popup-appear {
-    opacity: 1;
+    display: block;
     transition: .3s ease-in-out;
 }
 .blur {
     filter: blur(12px);
     transition: .3s ease-in-out;
+    pointer-events: none;
 }
