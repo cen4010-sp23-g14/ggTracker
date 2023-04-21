@@ -66,7 +66,7 @@ function buildHomeScreen(gamesList) {
     const insertCoversDiv = document.getElementById("insert-covers");
 
     // build html
-
+    console.log("In buildHomeScreen, the first banner link is: ",gamesList[0].bannerArt);
     for (i = 0; i < gamesList.length; i++) {
         var image = ``;
         const divColumns = document.createElement("div")
@@ -109,6 +109,7 @@ function buildHomeScreen(gamesList) {
             localStorage.setItem('gameName', selectedGame.name);
             localStorage.setItem('gameSummary', selectedGame.summary);
             localStorage.setItem('coverUrl', selectedGame.coverUrl);
+            localStorage.setItem('bannerArt', selectedGame.bannerArt)
             location.href = "/details.html";
         }); 
     }

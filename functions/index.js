@@ -52,7 +52,7 @@ app.post("/processGameData", async (req, res) => {
               const convertedGame = {
                 name: response.data[i].name,
                 summary: response.data[i].summary,
-                artworks: generateArtworkLink(i, gamesList),
+                bannerArt: generateArtworkLink(i, gamesList),
                 coverUrl: -1,
               };
               convertedGamesList.push(convertedGame);
@@ -60,7 +60,7 @@ app.post("/processGameData", async (req, res) => {
               const convertedGame = {
                 name: response.data[i].name,
                 summary: response.data[i].summary,
-                artworks: generateArtworkLink(i, gamesList),
+                bannerArt: generateBannerArt(i, gamesList),
                 coverUrl: `https://images.igdb.com/igdb/image/upload/t_cover_big/${response.data[i].cover.image_id}.jpg`,
               };
               convertedGamesList.push(convertedGame);
@@ -77,7 +77,7 @@ app.post("/processGameData", async (req, res) => {
   }
 });
 
-function generateArtworkLink(i, gamesList) {
+function generateBannerArt(i, gamesList) {
   if (gamesList[i].artworks != null) {
     return `https://images.igdb.com/igdb/image/upload/t_1080p/${gamesList[i].artworks[0].image_id}.jpg`;
   } else {
