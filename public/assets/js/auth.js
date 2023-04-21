@@ -4,18 +4,15 @@ document.addEventListener('DOMContentLoaded', () => {
     function hideLogin() {
         let popup = document.querySelector('.login-popup');
         let main = document.querySelector('main');
-        popup.classList.remove('popup-appear');
-        popup.classList.add('popup-hide');
-        main.classList.remove('blur');
+        popup.classList.toggle('hidden');
+        main.classList.toggle('blur');
     }
 
     function appearLogin (){
         let popup = document.querySelector('.login-popup');
         let main = document.querySelector('main');
-        popup.classList.remove('hidden');
-        popup.classList.remove('popup-hide');
-        popup.classList.add('popup-appear');
-        main.classList.add('blur');
+        popup.classList.toggle('hidden');
+        main.classList.toggle('blur');
     }
 
     let navUserButton = document.querySelector(".login-name");
