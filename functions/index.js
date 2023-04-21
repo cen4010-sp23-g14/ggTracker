@@ -39,7 +39,7 @@ app.post("/processGameData", async (req, res) => {
         "Client-ID": process.env.TWITCH_CLIENT_ID,
         "Authorization": "bearer " + process.env.TWITCH_APP_ACCESS_TOKEN,
       },
-      data: "limit 50; fields artworks.image_id,bundles,category,cover.image_id,cover.game_localization.cover.image_id,genres,involved_companies,name,parent_game,platforms,rating,rating_count,release_dates,screenshots,summary,total_rating,total_rating_count,url,videos; where rating >= 90; sort rating desc; where rating != null;",
+      data: "limit 50; fields artworks.image_id,bundles,category,cover.image_id,cover.game_localization.cover.image_id,genres,involved_companies,name,parent_game,platforms,rating,rating_count,release_dates,screenshots,summary,total_rating,total_rating_count,url,videos; where rating >= 95; sort rating desc; where rating != null;",
     })
         .then((response) => {
           gamesList = response.data;
@@ -52,6 +52,8 @@ app.post("/processGameData", async (req, res) => {
               const convertedGame = {
                 name: response.data[i].name,
                 summary: response.data[i].summary,
+                totalRating: response.data[i].total_rating,
+                ratingCount: response.data[i].total_rating_count,
                 bannerArt: generateArtworkLink(i, gamesList),
                 coverUrl: -1,
               };
@@ -61,6 +63,8 @@ app.post("/processGameData", async (req, res) => {
                 name: response.data[i].name,
                 summary: response.data[i].summary,
                 bannerArt: generateBannerArt(i, gamesList),
+                totalRating: response.data[i].total_rating,
+                ratingCount: response.data[i].total_rating_count,
                 coverUrl: `https://images.igdb.com/igdb/image/upload/t_cover_big/${response.data[i].cover.image_id}.jpg`,
               };
               convertedGamesList.push(convertedGame);

@@ -109,7 +109,8 @@ function buildHomeScreen(gamesList) {
             localStorage.setItem('gameName', selectedGame.name);
             localStorage.setItem('gameSummary', selectedGame.summary);
             localStorage.setItem('coverUrl', selectedGame.coverUrl);
-            localStorage.setItem('bannerArt', selectedGame.bannerArt)
+            localStorage.setItem('bannerArt', selectedGame.bannerArt);
+            localStorage.setItem('ratingCount', selectedGame.ratingCount);
             location.href = "/details.html";
         }); 
     }

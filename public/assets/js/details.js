@@ -4,12 +4,14 @@ function buildDetailsScreen() {
     let retrievedGameName = localStorage.getItem("gameName");
     let retrievedGameSummary = localStorage.getItem("gameSummary");
     let retrievedCoverUrl = localStorage.getItem("coverUrl");
-    let retrievedBannerArt = localStorage.getItem("bannerArt")
+    let retrievedBannerArt = localStorage.getItem("bannerArt");
+    let retrievedRatingCount = localStorage.getItem("ratingCount");
 
     console.log("The banner art we're saving in the local storage is: ", retrievedBannerArt);
 
     document.querySelector(".game-title__banner").textContent = retrievedGameName;
     document.querySelector(".summary-wrapper").textContent = retrievedGameSummary;
+    document.querySelector(".ratings-total p").textContent = `${retrievedRatingCount} reviews`;
 
     // Banner Artwork for Details Page
     if(retrievedBannerArt != -1) {
@@ -17,7 +19,7 @@ function buildDetailsScreen() {
         var bannerLocation = document.getElementById("bannerLocation");
         bannerLocation.insertAdjacentHTML("beforeend", bannerImage);
     } else {
-        bannerImage = `<img src="assets/img/missing_banner_purple_img.png" alt="${retrievedGameName}" class="game-img__banner"/>`;
+        bannerImage = `<img src="assets/img/missing_banner_img.png" alt="${retrievedGameName}" class="game-img__banner"/>`;
         var bannerLocation = document.getElementById("bannerLocation");
         bannerLocation.insertAdjacentHTML("beforeend", bannerImage);
     }
