@@ -1885,6 +1885,96 @@ p {
     }
 }
 
+/*--------------------------------------------------------------
+# List Hero Section
+--------------------------------------------------------------*/
+
+.list-banner {
+    display: grid;
+    grid-template-columns: auto auto 20%;
+    grid-gap: 1vw;
+    width: 100%;
+    background-color: #383439;
+    border-radius: 24px;
+    padding: 12px;
+}
+
+.list-hero .list-image {
+    width: 12vw;
+    border-radius: 12px;
+}
+
+.list-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+    margin: 0px;
+    padding: 0px;
+    font-size: .7vw;
+    margin: 0px;
+    padding: 0px;
+}
+
+.list-name {
+    font-size: 2.5vw !important;
+    display: inline;
+}
+
+.list-buttons__container {
+    display: grid;
+    grid-template-rows: auto 25%;
+    grid-row-gap: 6px;
+}
+
+.list-delete-button {
+    font-family: var(--font-primary);
+    letter-spacing: 1px;
+    font-size: 13px;
+    font-weight: 400;
+    white-space: nowrap;
+    transition: 0.3s;
+    background-color: #d7d7d7;
+    border: none;
+    border-radius: 12px;
+    color: #161616;
+    padding: 2px;
+    width: 100%;
+    height: auto;
+}
+.list-delete-button:hover {
+    transition: 0.3s;
+    opacity: 1;
+    background-color: #f18282;
+    border: none;
+    border-radius: 8px;
+    color: #0e2715;
+}
+
+.list-edit-button {
+    font-family: var(--font-primary);
+    letter-spacing: 1px;
+    font-size: 13px;
+    font-weight: 400;
+    white-space: nowrap;
+    transition: 0.3s;
+    background-color: #d7d7d7;
+    border: none;
+    border-radius: 12px;
+    color: #161616;
+    padding: 2px;
+    width: 100%;
+    height: auto;
+}
+.list-edit-button:hover {
+    transition: 0.3s;
+    opacity: 1;
+    background-color: #82f1c7;
+    border: none;
+    border-radius: 8px;
+    color: #0e2715;
+}
+
 
 /*--------------------------------------------------------------
 # Footer
@@ -2155,7 +2245,7 @@ p {
     border-radius: 24px;
     padding: 4vh;
 }
-.lists-popup__header button {
+.lists-popup__header button, .red-button {
     font-family: var(--font-primary);
     letter-spacing: 1px;
     font-size: 13px;
@@ -2171,7 +2261,7 @@ p {
     width: 42px;
     height: 28px;
 }
-.lists-popup__header button:hover {
+.lists-popup__header button:hover, .red-button:hover {
     transition: 0.3s;
     opacity: 1;
     background-color: #f18282;
@@ -2180,7 +2270,7 @@ p {
     color: #0e2715;
 }
 
-.lists-popup__item button {
+.lists-popup__item button, .green-button {
     font-family: var(--font-primary);
     letter-spacing: 1px;
     font-size: 13px;
@@ -2197,7 +2287,7 @@ p {
     width: 100%;
     height: 100%;
 }
-.lists-popup__item button:hover {
+.lists-popup__item button:hover, .green-button:hover {
     transition: 0.3s;
     opacity: 1;
     background-color: #82f1c7;
