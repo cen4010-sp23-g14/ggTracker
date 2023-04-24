@@ -427,7 +427,7 @@
         <input type="text" name="signIn" id="sign-in__username" placeholder="Enter Username">
         <p>Password</p>
         <input type="text" name="password" id="sign-in__password" placeholder="Enter Password">
-        <button type="submit" value="submit">Sign In</button>
+        <button type="submit" value="submit">Create Account</button>
       </form>
     </div>
     <div class="green-box"></div>
@@ -448,7 +448,7 @@
   </div>
 </section>
 
-<!-- ======= Lists Popup ======= -->
+<!-- ======= Select Lists Popup ======= -->
 <section id="lists-popup" class="lists-popup hidden">
   <div class="lists-popup__container">
     <div class="lists-popup__header">
@@ -490,6 +490,27 @@
           <button type="button">Add</button>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== Create Lists Popup ======= -->
+<section class="create-list__popup hidden">
+  <div class="create-list__wrapper">
+    <div class="create-list__header">
+      <button type="button" class="create-list__exit-button">&#10005</button>
+      <h3>Create Custom List</h3>
+    </div>
+    <div class="create-list__body">
+      <form action="" class="create-list__form">
+        <input type="text" name="createList" id="create-list__name" placeholder="Enter Name" maxlength="36">
+        <textarea type="text" name="createList" id="create-list__summary" placeholder="Enter Summary" maxlength="125" rows="3"></textarea>
+        <div class="create-list__buttons-container">
+          <label for="create-list__img" class="create-list__img-button">Cover Image</label>
+          <input type = "file" name="upload" accept="image/*" id="create-list__img" class="create-list__img"/>
+          <button type="submit" value="submit" class="create-list__submit">Create</button>
+        </div>
+      </form>
     </div>
   </div>
 </section>
