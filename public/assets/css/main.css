@@ -413,17 +413,18 @@ h6 {
     }
 }
 
-.header .login-name {
+.header .login-name * {
     padding: 15px;
     cursor: pointer;
+    color: #d7d7d7 !important;
 }
 
-.header .login-name:hover {
+.header .login-name:hover * {
     transition: 0.3s;
     background-color: #82f1c7;
     border: none;
     border-radius: 8px;
-    color: #0e2715;
+    color: #0e2715 !important;
 }
 
 @media (max-width: 575px) {
@@ -950,6 +951,34 @@ h6 {
     background-color: #5b545d;
 }
 
+.tab-header {
+    margin-bottom: 12px;
+}
+
+.create-custom-list__button {
+    font-family: var(--font-primary);
+    letter-spacing: 1px;
+    font-size: 1vw;
+    font-weight: 400;
+    white-space: nowrap;
+    transition: 0.3s;
+    background-color: #d7d7d7;
+    border: none;
+    border-radius: 12px;
+    color: #161616;
+    padding: 2px;
+    width: 25%;
+    height: 6vh;
+}
+.create-custom-list__button:hover {
+    transition: 0.3s;
+    opacity: 1;
+    background-color: #82f1c7;
+    border: none;
+    border-radius: 8px;
+    color: #0e2715;
+}
+
 .settings-nav-container > button {
     margin-bottom: 24px;
 }
@@ -992,6 +1021,11 @@ h6 {
     text-align: center;
     width:100%;
     margin: auto;
+    cursor: pointer;
+}
+.list-item__mini:hover {
+    transition: all 130ms ease-in-out;
+    transform: scale(1.05);
 }
 .list-item__mini h2{
     width: inherit;
@@ -1843,6 +1877,7 @@ p {
     height: 16vh;
     display:block;
     margin: 0px auto;
+    cursor: pointer;
 }
 
 .settings-pfp__wrapper:hover {
@@ -1850,7 +1885,6 @@ p {
     color: white;
     box-shadow: 0 0 10px 0 rgba(255,255,255,.35);
     text-shadow: 1px 1px 1em #000;
-    
 }
 
 .user-pfp:hover {
@@ -2309,7 +2343,7 @@ p {
     border-radius: 24px;
     padding: 4vh;
 }
-.lists-popup__header button, .red-button {
+.lists-popup__header > button:first-child, .red-button {
     font-family: var(--font-primary);
     letter-spacing: 1px;
     font-size: 13px;
@@ -2321,11 +2355,11 @@ p {
     border-radius: 12px;
     color: #161616;
     padding: 2px;
-    margin-bottom: 3vh;
+    margin: 0 1.5vw 3vh 0;
     width: 42px;
     height: 28px;
 }
-.lists-popup__header button:hover, .red-button:hover {
+.lists-popup__header > button:first-child:hover, .red-button:hover {
     transition: 0.3s;
     opacity: 1;
     background-color: #f18282;
