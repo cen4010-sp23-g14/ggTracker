@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     "use strict";
 
     function createListPopup() {
-        debugger;
         let createListContainer = document.querySelector('.create-list__popup');
         let listPopup = document.querySelector('.lists-popup');
         let main = document.querySelector('main');

@@ -416,15 +416,15 @@ h6 {
 
 .login-name {
     cursor: pointer;
+    padding: 15px;
 }
 
 .header .login-name * {
-    padding: 15px;
     cursor: pointer;
     color: #d7d7d7 !important;
 }
 
-.header .login-name:hover * {
+.header .login-name:hover {
     transition: 0.3s;
     background-color: #82f1c7;
     border: none;
