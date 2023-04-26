@@ -1,5 +1,11 @@
 let detailsGame = window.selectedGame;
 
+function setNavBarEmail() {
+    let retrievedEmail = localStorage.getItem('email');
+    let loginArea = document.querySelector(".login-name");
+    loginArea.innerHTML = retrievedEmail;
+}
+
 function buildDetailsScreen() {
     let retrievedGameName = localStorage.getItem("gameName");
     let retrievedGameSummary = localStorage.getItem("gameSummary");
@@ -41,6 +47,11 @@ function buildDetailsScreen() {
     addToCustom_Button.addEventListener("click", () => {
         alert("Added to CustomList [testing purposes]");
     });
+}
+
+function loadAll() {
+    setNavBarEmail()
+    buildDetailsScreen()
 }
 
 window.onbeforeunload = function (e) {

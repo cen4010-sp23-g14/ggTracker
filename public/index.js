@@ -2,6 +2,17 @@ let gamesList = [];
 let cover_url = "";
 window.selectedGame = null
 
+function setNavBarEmail() {
+    let retrievedEmail = localStorage.getItem('email');
+    let loginArea = document.querySelector(".login-name");
+    loginArea.innerHTML = retrievedEmail;
+}
+
+function loadAll() {
+    setNavBarEmail();
+    getGameData()
+}
+
 function getGameData() {
     $.ajax({
         url: `https://us-central1-ggtracker-27309.cloudfunctions.net/app/processGameData`,
@@ -18,45 +29,6 @@ function getGameData() {
             console.log("Something went wrong with our test");
             console.log("The error is: ");
             console.log(error);
-        }
-    })
-}
-
-function getGamesList() {
-    $.ajax({
-        url: `https://us-central1-ggtracker-27309.cloudfunctions.net/app/search`,
-        type: "POST",
-        async: true,
-        success: function (response) {
-            gamesList = response;
-            // console.log(gamesList)
-
-            buildHomeScreen(gamesList);
-        },
-        error: function (xhr) {
-            console.log("something went wrong getting video game data");
-            console.dir(xhr);
-        }
-    })
-}
-
-function getCover(cover_id) {
-    $.ajax({
-        url: "https://us-central1-ggtracker-27309.cloudfunctions.net/app/getCover",
-        type: "POST",
-        async: true,
-        data: {
-            id: cover_id
-        },
-        success: function (response) {
-            data = response;
-            console.log("The cover id we got is: ");
-            console.log(data);
-            return response
-        },
-        error: function (xhr) {
-            console.log("something went wrong getting cover data");
-            console.dir(xhr);
         }
     })
 }
