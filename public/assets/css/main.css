@@ -2432,12 +2432,13 @@ p {
     border-radius: 6px;
 }
 .lists-popup img {
-    width: 6vw;
+    width: 100%; /* 6vw */
     border-radius: 6px;
 }
 .lists-popup h6 {
     color: #ffffff;
     font-size: 2vw;
+    padding-left: 12px;
 }
 
 /*--------------------------------------------------------------
@@ -2584,9 +2585,8 @@ p {
 }
 
 .create-list__buttons-container {
-    display: grid;
-    grid-template-columns: auto auto;
-    justify-content: space-evenly;
+    display: flex;
+    justify-content: center;
 }
 
 /*-------------------------------------------------------------*/
