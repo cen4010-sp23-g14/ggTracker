@@ -39,7 +39,9 @@
 
 <body>
 
-  <!-- ======= Header ======= -->
+  <main id="main" data-aos="fade" data-aos-delay="50">
+
+      <!-- ======= Header ======= -->
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid d-flex align-items-center justify-content-between">
 
@@ -74,9 +76,7 @@
         </ul>
       </nav><!-- .navbar -->
 
-      <div class="login-name">
-        <a href="index.html" class="active">Login/Create Account</a>
-      </div>
+      <div class="login-name"><a href="settings.html">Login/Create Account</a></div>
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
 
@@ -84,7 +84,7 @@
   </header><!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
-  <section id="hero" class="hero d-flex flex-column justify-content-center align-items-center" data-aos="fade" data-aos-delay="1500">
+  <section id="hero" class="hero d-flex flex-column justify-content-center align-items-center" data-aos="fade" data-aos-delay="50">
     <div class="settings-wrapper align-items-left">
       <div class="grid">
         <div class="settings-pfp__wrapper">
@@ -103,13 +103,12 @@
       <input type = "file" name = "upload" accept = "image/*" class="pfp-form opacity"/>
   </form>
 
-  <main id="main" data-aos="fade" data-aos-delay="1500">
     <div class="settings-page-wrap">
       <div class="d-flex align-items-start">
         <div class="settings-nav-container nav flex-column nav-pills me-3 space-between" id="v-pills-tab" role="tablist" aria-orientation="vertical">
           <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Change Username or Password</button>
           <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">View Lists</button>
-          <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Change Theme</button>
+          <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Logout</button>
         </div>
         <div class="tab-content" id="v-pills-tabContent">
           <!-- Change Username or Password -->
@@ -127,6 +126,9 @@
           </div>
           <!-- View Lists -->
           <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+            <div class="tab-header">
+              <button type="button" class="create-custom-list__button">Create New List</button>
+            </div>
             <div class="tab-container view-lists__tab-contents">
               <div class="list-item__mini">
                 <img src="assets/img/Owlsley2022BG.png" alt="List Thumbnail" class="list-thumbnail__mini d-flex">
@@ -156,49 +158,61 @@
           </div>
           <!-- Change Theme -->
           <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-            <div class="tab-container change-theme-contents">
-              <p>Change Theme container!</p>
+            <div class="tab-container logout-contents">
+              <h2>Log out?</h2>
+              <button type="button" class="logout-button">Confirm</button>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-  </main><!-- End #main -->
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
+      <div class="container-fluid d-flex align-items-space-between justify-content-center">
+        <div class="copyright">
+          <!-- All the links in the footer should remain intact. -->
+          <!-- You can delete the links only if you purchased the pro version. -->
+          <!-- Licensing information: https://bootstrapmade.com/license/ -->
+          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/photofolio-bootstrap-photography-website-template/ -->
+          <h2>GGTracker © 2023</h2>
+          <hr class="solid">
+          <p>Web application for university use only <br><span>Florida Atlantic University - 777 Glades Rd, Boca Raton, FL 33431
+          <br>Peyton Adkins, Siobahn Devlin, Kanksha P, Jacob Goldstein, David Miloseski</span>
+          <br>Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        </p>
+        </div>
+        <div class="green-box"></div>
+        <div class="about">
+          <h2>About Us</h2>
+          <hr class="solid">
+          <a href="about.html">this is a link!</a>
+        </div>
+      </div>
+    </footer><!-- End Footer -->
 
-  <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
-    <div class="container-fluid d-flex align-items-space-between justify-content-center">
-      <div class="copyright">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/photofolio-bootstrap-photography-website-template/ -->
-        <h2>GGTracker © 2023</h2>
-        <hr class="solid">
-        <p>Web application for university use only <br><span>Florida Atlantic University - 777 Glades Rd, Boca Raton, FL 33431
-        <br>Peyton Adkins, Siobahn Devlin, Kanksha P, Jacob Goldstein, David Miloseski</span>
-        <br>Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-      </p>
-      </div>
-      <div class="green-box"></div>
-      <div class="about">
-        <h2>About Us</h2>
-        <hr class="solid">
-        <a href="about.html">this is a link!</a>
-      </div>
-    </div>
-  </footer><!-- End Footer -->
+  </main><!-- End #main -->
 
   <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <div id="preloader">
-    <div class="line"></div>
-    <div class="preloader-img-wrapper">
-      <img src="assets/img/GGTracker_Logo_V2.png" alt="GGTracker Logo" class="preloader-logo">
+  <!-- ====== Create Lists Popup ======= -->
+  <section class="create-list__popup hidden">
+    <div class="create-list__wrapper">
+      <div class="create-list__header">
+        <button type="button" class="create-list__exit-button">&#10005</button>
+        <h3>Create Custom List</h3>
+      </div>
+      <div class="create-list__body">
+        <form action="" class="create-list__form">
+          <input type="text" name="createList" id="create-list__name" placeholder="Enter Name" maxlength="36">
+          <textarea type="text" name="createList" id="create-list__summary" placeholder="Enter Summary" maxlength="125" rows="3"></textarea>
+          <div class="create-list__buttons-container">
+            <button type="submit" value="submit" class="create-list__submit">Create</button>
+          </div>
+        </form>
+      </div>
     </div>
-    
-  </div>
+  </section>
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -209,6 +223,8 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/list.js"></script>
 
 </body>
 

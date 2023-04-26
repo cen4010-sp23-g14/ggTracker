@@ -44,9 +44,25 @@ function buildDetailsScreen() {
         alert("Added to Backlog [testing purposes]");
     });
     let addToCustom_Button = document.querySelector('.add-to-custom__button');
-    addToCustom_Button.addEventListener("click", () => {
-        alert("Added to CustomList [testing purposes]");
-    });
+    addToCustom_Button.addEventListener("click", appearListSelect);
+
+    // Wishlist popup
+    function hideListSelect() {
+        let popup = document.querySelector('.lists-popup');
+        let main = document.querySelector('main');
+        popup.classList.toggle('hidden');
+        main.classList.toggle('blur');
+    }
+
+    function appearListSelect (){
+        let popup = document.querySelector('.lists-popup');
+        let main = document.querySelector('main');
+        popup.classList.toggle('hidden');
+        main.classList.toggle('blur');
+    }
+
+    let exitButton = document.querySelector('.lists-popup__header button');
+    exitButton.addEventListener("click", hideListSelect);
 }
 
 function loadAll() {

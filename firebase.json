@@ -2,7 +2,7 @@
   "emulators": {
     "functions": {
       "host": "127.0.0.1",
-      "port": "5678"
+      "port": "6789"
     }
   },
   "functions": [
