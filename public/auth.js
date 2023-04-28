@@ -7,10 +7,8 @@ import {
   onAuthStateChanged,
   signOut
 } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-auth.js";
+import { getFirestore, addDoc, collection } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-firestore.js"
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries Your web app's
-// Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBC3aTDX9UFi28v1mWQwWwa1LcfGo0j7zc",
   authDomain: "ggtracker-27309.firebaseapp.com",
@@ -23,6 +21,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
+const db = getFirestore(app);
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
@@ -62,12 +61,13 @@ function logout() {
 
 function createNewAccount(auth, email, password) {
   createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
+    .then(async (userCredential) => {
       // Signed in
       const user = userCredential.user;
       localStorage.setItem('email', email);
+      await setDoc(doc(db, "users", userCredential.uid));
       alert("Welcome to GGTracker, " + userCredential.user.value);
-      console.log("User has been successfully created");
+      
     })
     .catch((error) => {
       console.log("Error on create account: ", error);
@@ -162,3 +162,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+/*
+try {
+  const docRef = await addDoc(collection(db, "users"), {
+    first: "Ada",
+    last: "Lovelace",
+    born: 1815
+  });
+  console.log("Document written with ID: ", docRef.id);
+} catch (e) {
+  console.error("Error adding document: ", e);
+}
+*/
