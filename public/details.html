@@ -38,7 +38,7 @@
 ======================================================== -->
 </head>
 
-<body onload="loadAll();">
+<body onload="loadAllDetails();">
 
 <main id="main" data-aos="fade" data-aos-delay="25">
 
@@ -75,7 +75,10 @@
         </nav>
         <!-- .navbar -->
 
-        <div class="login-name">Login/Create Account</div>
+        <div class="login-name">
+          <div class="login-name__button">Login/Create Account</div>
+          <a href="settings.html" class="login-name__anchor hidden"></a>
+        </div>
         <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
         <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
     </div>
@@ -524,9 +527,9 @@
 
 <!-- Template Main JS File -->
 <script src="assets/js/main.js"></script>
-<script src="assets/js/details.js"></script>
+<script type="module" src="details.js"></script>
 <script type="module" src="auth.js"></script>
-<script src="assets/js/list.js"></script>
+<script type="module" src="list.js"></script>
 </body>
 
 </html>

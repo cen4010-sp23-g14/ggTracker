@@ -2,14 +2,7 @@ let gamesList = [];
 let cover_url = "";
 window.selectedGame = null
 
-function setNavBarEmail() {
-    let retrievedEmail = localStorage.getItem('email');
-    let loginArea = document.querySelector(".login-name");
-    loginArea.innerHTML = retrievedEmail;
-}
-
-function loadAll() {
-    setNavBarEmail();
+function loadAllIndex() {
     getGameData()
 }
 

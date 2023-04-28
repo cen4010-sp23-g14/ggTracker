@@ -4,6 +4,8 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut
 } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-auth.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -22,12 +24,47 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    const uid = user.uid;
+    let retrievedEmail = localStorage.getItem('email');
+    let loginAnchor = document.querySelector(".login-name__anchor");
+    let loginButton = document.querySelector(".login-name__button");
+    loginAnchor.classList.toggle('hidden');
+    loginButton.classList.toggle('hidden');
+    loginAnchor.innerHTML = retrievedEmail;
+  } else {
+    // not logged in 
+    let url = window.location.href;
+    console.log(url);
+    if (url.includes('settings.html') || url.includes('list.html')) {
+      //ERROR
+      alert("YOU DON'T BELONG HERE, VILE SCUM");
+      window.location = "/index.html";
+    }
+  }
+});
+
+// Check to see if on Settings page
+let logoutButton = document.querySelector('.logout-button');
+if (logoutButton != null) {
+  logoutButton.addEventListener("click", logout);
+}
+
+function logout() {
+  signOut(auth).then(() => {
+    alert("Sign out successful");
+    window.location = '/index.html';
+  }).catch((error) => {
+    alert("Error signing out");
+  });
+}
+
 function createNewAccount(auth, email, password) {
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
-      changeToUsername(email)
       localStorage.setItem('email', email);
       alert("Welcome to GGTracker, " + userCredential.user.value);
       console.log("User has been successfully created");
@@ -45,20 +82,15 @@ function signIntoAccount(auth, email, password) {
   .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
+    alert("Welcome back, " + email);
     localStorage.setItem('email', email);
-    changeToUsername(email)
     // ...
   })
   .catch((error) => {
+    alert("Account does not exist!");
     const errorCode = error.code;
     const errorMessage = error.message;
   });
-}
-
-function changeToUsername(username) {
-  const loginArea = document.querySelector(".login-name");
-  loginArea.innerHTML = username
-
 }
 
 // HTML Setup/Logic
@@ -82,7 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
     main.classList.add("blur");
   }
 
-  let navUserButton = document.querySelector(".login-name");
+  let navUserButton = document.querySelector(".login-name__button");
   navUserButton.addEventListener("click", appearLogin);
 
   let exitButton = document.querySelector(".login-popup__header");
@@ -101,7 +133,6 @@ document.addEventListener("DOMContentLoaded", () => {
       // Throw Error
     } else {
       signIntoAccount(auth, username.value, password.value);
-      alert("Welcome back, " + username.value);
       // Compute Normally
       hideLogin();
     }

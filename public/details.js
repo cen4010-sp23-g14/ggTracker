@@ -1,3 +1,19 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-auth.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBC3aTDX9UFi28v1mWQwWwa1LcfGo0j7zc",
+    authDomain: "ggtracker-27309.firebaseapp.com",
+    projectId: "ggtracker-27309",
+    storageBucket: "ggtracker-27309.appspot.com",
+    messagingSenderId: "966315096291",
+    appId: "1:966315096291:web:d51d80f26ed9b4aa436dd6",
+  };
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth();
+const user = auth.currentUser;
+
 let detailsGame = window.selectedGame;
 
 function setNavBarEmail() {
@@ -37,24 +53,53 @@ function buildDetailsScreen() {
     // Side tab buttons
     let addToWishlist_Button = document.querySelector('.add-to-wishlist__button');
     addToWishlist_Button.addEventListener("click", () => {
-        alert("Added to Wishlist [testing purposes]");
+        if (checkLoginState()) {
+            //add
+            alert("Added to Wishlist [testing purposes]");
+        } else {
+            // don't add logic to buttons
+            alert("You must be logged in to add to your Wishlist.")
+        }
     });
     let addToBacklog_Button = document.querySelector('.add-to-backlog__button');
     addToBacklog_Button.addEventListener("click", () => {
-        alert("Added to Backlog [testing purposes]");
+        if (checkLoginState()) {
+            //add
+            alert("Added to Backlog [testing purposes]");
+        } else {
+            // don't add logic to buttons
+            alert("You must be logged in to add to your Backlog list.")
+        }
     });
     let addToCustom_Button = document.querySelector('.add-to-custom__button');
     addToCustom_Button.addEventListener("click", appearListSelect);
 
-    // Wishlist popup
-    function hideListSelect() {
-        let popup = document.querySelector('.lists-popup');
-        let main = document.querySelector('main');
-        popup.classList.toggle('hidden');
-        main.classList.toggle('blur');
+    // Login State Check
+    function checkLoginState() {
+        if (user) {
+          // User is logged, awesome. do nothing
+          return true;
+        } else {
+          // No user is signed in. Deactivate buttons and alert that they need to login
+          return false;
+        }
     }
 
-    function appearListSelect (){
+    // Wishlist popup
+    function hideListSelect() {
+        if (checkLoginState) {
+            // if true then leave buttons the way they are
+            let popup = document.querySelector('.lists-popup');
+            let main = document.querySelector('main');
+            popup.classList.toggle('hidden');
+            main.classList.toggle('blur');
+        } else {
+            // don't add logic to buttons
+            alert("You must be logged in to create custom lists.")
+        }
+    }
+
+    function appearListSelect() {
         let popup = document.querySelector('.lists-popup');
         let main = document.querySelector('main');
         popup.classList.toggle('hidden');
@@ -65,8 +110,7 @@ function buildDetailsScreen() {
     exitButton.addEventListener("click", hideListSelect);
 }
 
-function loadAll() {
-    setNavBarEmail()
+function loadAllDetails() {
     buildDetailsScreen()
 }
 
