@@ -37,16 +37,16 @@ function buildDetailsScreen() {
 
     // Banner Artwork for Details Page
     if(retrievedBannerArt != -1) {
-        bannerImage = `<img src="${retrievedBannerArt}" alt="${retrievedGameName}" class="game-img__banner"/>`;
+        var bannerImage = `<img src="${retrievedBannerArt}" alt="${retrievedGameName}" class="game-img__banner"/>`;
         var bannerLocation = document.getElementById("bannerLocation");
         bannerLocation.insertAdjacentHTML("beforeend", bannerImage);
     } else {
-        bannerImage = `<img src="assets/img/missing_banner_img.png" alt="${retrievedGameName}" class="game-img__banner"/>`;
+        var bannerImage = `<img src="assets/img/missing_banner_img.png" alt="${retrievedGameName}" class="game-img__banner"/>`;
         var bannerLocation = document.getElementById("bannerLocation");
         bannerLocation.insertAdjacentHTML("beforeend", bannerImage);
     }
     // add image for cover Art
-    image = `<img src="${retrievedCoverUrl}" alt="${retrievedGameName}" class="img-fluid cover-image"/>`;
+    var image = `<img src="${retrievedCoverUrl}" alt="${retrievedGameName}" class="img-fluid cover-image"/>`;
     var coverLocation = document.getElementById("coverArt");
     coverLocation.insertAdjacentHTML("beforeend", image);
 
@@ -110,9 +110,11 @@ function buildDetailsScreen() {
     exitButton.addEventListener("click", hideListSelect);
 }
 
-function loadAllDetails() {
-    buildDetailsScreen()
+function loadDetailsScreen() {
+    buildDetailsScreen();
 }
+
+window.loadDetailsScreen = loadDetailsScreen();
 
 window.onbeforeunload = function (e) {
     if(retrievedGameName != localStorage.getItem("gameName")) {
