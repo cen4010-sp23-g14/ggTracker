@@ -2,8 +2,18 @@
   "emulators": {
     "functions": {
       "host": "127.0.0.1",
-      "port": "6789"
-    }
+      "port": "4321"
+    },
+    "firestore": {
+      "port": 8080
+    },
+    "hosting": {
+      "port": 5005
+    },
+    "ui": {
+      "enabled": true
+    },
+    "singleProjectMode": true
   },
   "functions": [
     {
@@ -22,11 +32,13 @@
   ],
   "hosting": {
     "public": "public",
-    "rewrites": [ {
-      "source": "/app",
-      "function": "app",
-      "region": "us-central1"
-    } ],
+    "rewrites": [
+      {
+        "source": "/app",
+        "function": "app",
+        "region": "us-central1"
+      }
+    ],
     "ignore": [
       "firebase.json",
       "**/.*",

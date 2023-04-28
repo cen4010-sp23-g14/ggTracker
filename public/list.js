@@ -1,7 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-firestore.js"
-// import { getFirestore } from "firebase/firestore";
-
 
 document.addEventListener('DOMContentLoaded', () => {
     "use strict";
