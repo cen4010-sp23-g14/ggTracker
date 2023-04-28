@@ -39,13 +39,12 @@ app.post("/processGameData", async (req, res) => {
         "Client-ID": process.env.TWITCH_CLIENT_ID,
         "Authorization": "bearer " + process.env.TWITCH_APP_ACCESS_TOKEN,
       },
-      data: "limit 50; fields artworks.image_id,bundles,category,cover.image_id,cover.game_localization.cover.image_id,genres,involved_companies,name,parent_game,platforms,rating,rating_count,release_dates,screenshots,summary,total_rating,total_rating_count,url,videos; where rating >= 95; sort rating desc; where rating != null;",
+      data: "limit 50; fields age_ratings.rating, artworks.image_id,bundles,category,cover.image_id,cover.game_localization.cover.image_id,genres,involved_companies,name,parent_game,platforms,rating,rating_count,release_dates,screenshots,summary,total_rating,total_rating_count,url,videos; where rating >= 95; sort rating desc; where rating != null;",
     })
         .then((response) => {
           gamesList = response.data;
           functions.logger.log("In the backend, in processGameData, we have retrieved the game data: ", gamesList);
           let convertedGamesList = [];
-          functions.logger.debug("The first game artwork id is: ", gamesList[0].artworks[0].image_id);
           // process the games data into an object that only has the data we need
           for (let i = 0; i < response.data.length; i++) {
             if (response.data[i].cover == null) {
@@ -56,6 +55,7 @@ app.post("/processGameData", async (req, res) => {
                 ratingCount: response.data[i].total_rating_count,
                 bannerArt: generateArtworkLink(i, gamesList),
                 coverUrl: -1,
+                ageRating: checkForRating(i, gamesList),
               };
               convertedGamesList.push(convertedGame);
             } else {
@@ -66,6 +66,7 @@ app.post("/processGameData", async (req, res) => {
                 totalRating: response.data[i].total_rating,
                 ratingCount: response.data[i].total_rating_count,
                 coverUrl: `https://images.igdb.com/igdb/image/upload/t_cover_big/${response.data[i].cover.image_id}.jpg`,
+                ageRating: checkForRating(i, gamesList),
               };
               convertedGamesList.push(convertedGame);
             }
@@ -85,6 +86,19 @@ function generateBannerArt(i, gamesList) {
   if (gamesList[i].artworks != null) {
     return `https://images.igdb.com/igdb/image/upload/t_1080p/${gamesList[i].artworks[0].image_id}.jpg`;
   } else {
+    return -1;
+  }
+}
+
+function checkForRating(i, gamesList) {
+  functions.logger.debug("in checkForRating, before we do the if else check, the value of the agte ratings is: ", gamesList[i].age_ratings);
+  if (gamesList[i].age_ratings != null) {
+    functions.logger.debug("the age rating for this game is: ", gamesList[i].age_ratings);
+    return gamesList[i].age_ratings.rating;
+  } else if (gamesList[i].age_ratings === "undefined") {
+    return -1;
+  } else {
+    functions.logger.debug("the age rating does not exist for this game");
     return -1;
   }
 }
