@@ -1059,6 +1059,8 @@ h6 {
 .list-item__mini h2{
     width: inherit;
     padding-top: 6px;
+    /* TEMPORARY */
+    display: none;
 }
 .logout-button {
     font-family: var(--font-primary);
@@ -1091,6 +1093,10 @@ h6 {
     -webkit-user-select: none; /* Safari */
     -ms-user-select: none; /* IE 10 and IE 11 */
     user-select: none; /* Standard syntax */
+}
+
+.view-lists__tab-contents  p {
+    padding-bottom: 250px;
 }
 
 @media (min-width: 1560px) {

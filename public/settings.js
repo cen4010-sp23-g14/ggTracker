@@ -50,9 +50,8 @@ async function setUpLists(userId) {
     let container = document.querySelector(".view-lists__tab-contents")
 
     if (doesBacklogExist == "true") {
-        let coverArt = generateCoverArtLink("backlog")
         const div = document.createElement("div");
-        const listImage = `<img src="${coverArt}" alt="Backlog list" class="list-thumbnail__mini d-flex"/>`;
+        const listImage = `<img src="assets/img/Backlog_GGTracker.png" alt="Backlog list" class="list-thumbnail__mini d-flex"/>`;
         const h2 = document.createElement("h2");
         h2.textContent = "Backlog";
         div.classList.add("list-item__mini");
@@ -68,9 +67,8 @@ async function setUpLists(userId) {
 
     if (doesWishlistExist == "true") {
         // add html code for this list
-        let coverArt = generateCoverArtLink("wishlist")
         const div = document.createElement("div");
-        const listImage = `<img src="${coverArt}" alt="Wishlist" class="list-thumbnail__mini d-flex"/>`;
+        const listImage = `<img src="assets/img/Wishlist_GGTracker.png" alt="Wishlist" class="list-thumbnail__mini d-flex"/>`;
         const h2 = document.createElement("h2");
         h2.textContent = "Wishlist";
         div.classList.add("list-item__mini");
@@ -93,29 +91,29 @@ async function setUpLists(userId) {
     }
 }
 
-function generateCoverArtLink(listName) {
-    let coverArt = "";
-    if (listName == "wishlist") {
-        coverArt = localStorage.getItem("wishListCover");
-        console.log("in generateCoverArtLink, the url we got back is: ", coverArt);
-        if (coverArt != -1 && coverArt != null) {
-            return coverArt
-        } else {
-            return "assets/img/Owlsley2022BG.png"
-        }
-    } 
+// function generateCoverArtLink(listName) {
+//     let coverArt = "";
+//     if (listName == "wishlist") {
+//         coverArt = localStorage.getItem("wishListCover");
+//         console.log("in generateCoverArtLink, the url we got back is: ", coverArt);
+//         if (coverArt != -1 && coverArt != null) {
+//             return coverArt
+//         } else {
+//             return "assets/img/Owlsley2022BG.png"
+//         }
+//     } 
 
-    if (listName == "backlog") {
-        coverArt = localStorage.getItem("backlogCover");
-        if (coverArt != -1) {
-            return coverArt
-        } else {
-            return "assets/img/Owlsley2022BG.png"
-        }
-    }
-}
+//     if (listName == "backlog") {
+//         coverArt = localStorage.getItem("backlogCover");
+//         if (coverArt != -1 && coverArt != null) {
+//             return coverArt
+//         } else {
+//             return "assets/img/Owlsley2022BG.png"
+//         }
+//     }
+// }
 
-// TEMPORARY
+// Puts email as the title in the settings page (don't delete like Siobahn did)
 let usernameText = document.querySelector('.settings-username__wrapper');
 let email = localStorage.getItem('email');
 usernameText.textContent = email;

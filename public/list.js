@@ -76,7 +76,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     const listDocRef = doc(listColRef, event.currentTarget.getAttribute("name"));
                     await deleteDoc(listDocRef);
 
-                    alert("Game deleted from your wishlist");
                     location.reload();
                 });
 
