@@ -39,13 +39,12 @@ app.post("/processGameData", async (req, res) => {
         "Client-ID": process.env.TWITCH_CLIENT_ID,
         "Authorization": "bearer " + process.env.TWITCH_APP_ACCESS_TOKEN,
       },
-      data: "limit 50; fields artworks.image_id,bundles,category,cover.image_id,cover.game_localization.cover.image_id,genres,involved_companies,name,parent_game,platforms,rating,rating_count,release_dates,screenshots,summary,total_rating,total_rating_count,url,videos; where rating >= 95; sort rating desc; where rating != null;",
+      data: "limit 200; fields artworks.image_id,bundles,category,cover.image_id,cover.game_localization.cover.image_id,genres.name,involved_companies,name,parent_game,platforms,rating,rating_count,release_dates,screenshots.image_id,summary,total_rating,total_rating_count,url,videos; where rating >= 95; sort rating desc; where rating != null;",
     })
         .then((response) => {
           gamesList = response.data;
           functions.logger.log("In the backend, in processGameData, we have retrieved the game data: ", gamesList);
           let convertedGamesList = [];
-          functions.logger.debug("The first game artwork id is: ", gamesList[0].artworks[0].image_id);
           // process the games data into an object that only has the data we need
           for (let i = 0; i < response.data.length; i++) {
             if (response.data[i].cover == null) {
@@ -55,6 +54,8 @@ app.post("/processGameData", async (req, res) => {
                 totalRating: response.data[i].total_rating,
                 ratingCount: response.data[i].total_rating_count,
                 bannerArt: generateArtworkLink(i, gamesList),
+                screenshots: [generateScreenshotLinks(i, gamesList)],
+                genres: [generateGenreList(i, gamesList)],
                 coverUrl: -1,
               };
               convertedGamesList.push(convertedGame);
@@ -65,6 +66,8 @@ app.post("/processGameData", async (req, res) => {
                 bannerArt: generateBannerArt(i, gamesList),
                 totalRating: response.data[i].total_rating,
                 ratingCount: response.data[i].total_rating_count,
+                screenshots: [generateScreenshotLinks(i, gamesList)],
+                genres: [generateGenreList(i, gamesList)],
                 coverUrl: `https://images.igdb.com/igdb/image/upload/t_cover_big/${response.data[i].cover.image_id}.jpg`,
               };
               convertedGamesList.push(convertedGame);
@@ -80,6 +83,25 @@ app.post("/processGameData", async (req, res) => {
     res.status(400).send(error);
   }
 });
+
+function generateGenreList(i, gamesList) {
+  if (gamesList[i].genres != null) {
+    functions.logger.debug("the genres array is equal to: ", gamesList[i].genres);
+    return gamesList[i].genres;
+  } else {
+    return -1;
+  }
+}
+
+function generateScreenshotLinks(i, gamesList) {
+  if (gamesList[i].screenshots != null) {
+    functions.logger.debug("the screenshots array is equal to: ", gamesList[i].screenshots);
+    return gamesList[i].screenshots;
+  } else {
+    functions.logger.debug("the screenshots array is empty");
+    return -1;
+  }
+}
 
 function generateBannerArt(i, gamesList) {
   if (gamesList[i].artworks != null) {

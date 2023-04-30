@@ -32,6 +32,15 @@ let retrievedCoverUrl = localStorage.getItem("coverUrl");
 let retrievedBannerArt = localStorage.getItem("bannerArt");
 let retrievedRatingCount = localStorage.getItem("ratingCount");
 
+let retrievedScreenshots = JSON.parse(localStorage.getItem("screenshots"));
+let retrievedGenres = JSON.parse(localStorage.getItem("genres"));
+
+// console.log("The list of screenshots is: ", retrievedScreenshots);
+// console.log("The first screenshot id is: ",
+// retrievedScreenshots[0][0].image_id); console.log("The list of genres is: ",
+// retrievedGenres); console.log("The first genre is: ",
+// retrievedGenres[0][0].name);
+
 function setNavBarEmail() {
     let retrievedEmail = localStorage.getItem('email');
     let loginArea = document.querySelector(".login-name");
@@ -69,6 +78,61 @@ function buildDetailsScreen() {
     var coverLocation = document.getElementById("coverArt");
     coverLocation.insertAdjacentHTML("beforeend", image);
 
+    var genreContainer = document.querySelector(".genres-container");
+
+    for (let i = 0; i < retrievedGenres[0].length; i++) {
+        let p = document.createElement("p");
+        p.textContent = retrievedGenres[0][i]
+            .name
+            genreContainer
+            .append(p);
+    }
+
+    // add screenshots for the gallery here let galleryUrl =
+    // `https://images.igdb.com/igdb/image/upload/t_screenshot_huge/${image_id}.jpg`
+    let galleryContainer = document.querySelector(".gallery-container"); 
+    console.log("The length of the array is: ", retrievedScreenshots[0].length);
+
+    if (retrievedScreenshots[0] != -1) {
+        for (let i = 0; i < retrievedScreenshots[0].length; i++) {
+            let image_id = ""
+            console.log("The empty array is coming back as ", retrievedScreenshots[0]);
+            image_id = retrievedScreenshots[0][i].image_id;
+
+            let div1 = document.createElement("div");
+            div1
+                .classList
+                .add("col-xl-3", "col-lg-4", "col-md-6");
+
+            let div2 = document.createElement("div");
+            div2
+                .classList
+                .add("gallery-item", "h-100");
+
+            galleryContainer.append(div1);
+            div1.append(div2);
+
+            // create html to be appended to div 2
+            let image = `<img src="https://images.igdb.com/igdb/image/upload/t_screenshot_huge/${image_id}.jpg" alt="${retrievedGameName} Screenshot" class="img-fluid"/>`;
+
+            let div3 = document.createElement("div");
+            div3
+                .classList
+                .add("gallery-links", "d-flex", "align-items-center", "justify-content-center");
+
+            div2.insertAdjacentHTML("beforeend", image);
+            div2.append(div3);
+
+            // create html to be appended onto div 3
+            let html = `<a href="https://images.igdb.com/igdb/image/upload/t_screenshot_huge/${image_id}.jpg" title="Screenshot ${i+1}" class="glightbox preview-link"><i class="bi bi-arrows-angle-expand"></i></a>`;
+            div3.insertAdjacentHTML("afterbegin", html);
+        }
+    } else {
+        let p = document.createElement("p");
+        p.innerText = "No screenshots available for this game."
+        galleryContainer.append(p);
+    }
+
     // Side tab buttons
     let addToWishlist_Button = document.querySelector('.add-to-wishlist__button');
     addToWishlist_Button.addEventListener("click", async () => {
@@ -91,11 +155,10 @@ function buildDetailsScreen() {
                 ratingCount: retrievedRatingCount
             });
 
-            // Add field to user document keeping track of what list collections we have created in the database to be referenced in the settings.js
+            // Add field to user document keeping track of what list collections we have
+            // created in the database to be referenced in the settings.js
 
-            await updateDoc(doc(db, "users", id), {
-                wishlist: "true"
-              });
+            await updateDoc(doc(db, "users", id), {wishlist: "true"});
 
             alert(`${retrievedGameName} has been added to your Wishlist`);
 
@@ -125,9 +188,7 @@ function buildDetailsScreen() {
                 ratingCount: retrievedRatingCount
             })
 
-            await updateDoc(doc(db, "users", id), {
-                backlog: "true"
-              });
+            await updateDoc(doc(db, "users", id), {backlog: "true"});
 
             alert(`${retrievedGameName} added to your Backlog`);
         } else {
@@ -140,7 +201,6 @@ function buildDetailsScreen() {
 
     // Login State Check
     function checkLoginState() {
-        console.log("The current logged in user is: ", auth.currentUser.email);
         if (auth.currentUser.email != null) {
             // User is logged, awesome. do nothing
             console.log("The user is logged in");
@@ -151,7 +211,6 @@ function buildDetailsScreen() {
                 "In checkLoginState, in the else block, the current user is: ",
                 auth.currentUser.email
             );
-            console.log("The user is NOT logged in");
             return false;
         }
     }

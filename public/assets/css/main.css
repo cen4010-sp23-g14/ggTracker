@@ -159,6 +159,7 @@ h6 {
     min-width: 100px;
     min-height: 100%;
     cursor: pointer;
+    margin-left: 24px;
 }
 
 .page-header .cta-btn {
@@ -854,6 +855,14 @@ h6 {
 
 .gallery {
     margin-top: 40px;
+}
+
+.gallery-container {
+    justify-content: left;
+
+}
+.gallery-container > p {
+    padding-top: 12px;
 }
 
 .gallery-container > div {
@@ -1674,9 +1683,9 @@ h6 {
 
 .publication {
     display: grid;
-    grid-template-columns: auto auto auto auto auto;
-    grid-template-rows: repeat();
-    padding-left: 12px;
+    grid-template-columns: auto auto; /* 5 */
+    /* grid-template-rows: repeat(); */
+    justify-content: space-around;
 }
 .publication > div {
     text-align: left;

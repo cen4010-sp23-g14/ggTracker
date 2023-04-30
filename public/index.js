@@ -1,5 +1,6 @@
 let gamesList = [];
 let cover_url = "";
+
 window.selectedGame = null
 
 function loadAllIndex() {
@@ -75,9 +76,9 @@ function buildHomeScreen(gamesList) {
             localStorage.setItem('coverUrl', selectedGame.coverUrl);
             localStorage.setItem('bannerArt', selectedGame.bannerArt);
             localStorage.setItem('ratingCount', selectedGame.ratingCount);
+            localStorage.setItem('screenshots', JSON.stringify(selectedGame.screenshots));
+            localStorage.setItem('genres', JSON.stringify(selectedGame.genres));
             location.href = "/details.html";
         }); 
     }
 }
-
-// const myArray = text.split(" ");
