@@ -98,7 +98,7 @@ function generateCoverArtLink(listName) {
     if (listName == "wishlist") {
         coverArt = localStorage.getItem("wishListCover");
         console.log("in generateCoverArtLink, the url we got back is: ", coverArt);
-        if (coverArt != -1) {
+        if (coverArt != -1 && coverArt != null) {
             return coverArt
         } else {
             return "assets/img/Owlsley2022BG.png"

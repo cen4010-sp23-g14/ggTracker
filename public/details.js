@@ -136,7 +136,8 @@ function buildDetailsScreen() {
     // Side tab buttons
     let addToWishlist_Button = document.querySelector('.add-to-wishlist__button');
     addToWishlist_Button.addEventListener("click", async () => {
-        if (checkLoginState()) {
+        let boolCheck = checkLoginState()
+        if (boolCheck) {
             //add wishlist firebase code here
 
             const user = auth.currentUser;
@@ -169,7 +170,8 @@ function buildDetailsScreen() {
     });
     let addToBacklog_Button = document.querySelector('.add-to-backlog__button');
     addToBacklog_Button.addEventListener("click", async () => {
-        if (checkLoginState()) {
+        let boolCheck = checkLoginState()
+        if (boolCheck) {
             //add add wishlist firebase code here
 
             const user = auth.currentUser;
@@ -201,16 +203,12 @@ function buildDetailsScreen() {
 
     // Login State Check
     function checkLoginState() {
-        if (auth.currentUser.email != null) {
+        if (auth.currentUser != null) {
             // User is logged, awesome. do nothing
             console.log("The user is logged in");
             return true;
         } else {
             // No user is signed in. Deactivate buttons and alert that they need to login
-            console.log(
-                "In checkLoginState, in the else block, the current user is: ",
-                auth.currentUser.email
-            );
             return false;
         }
     }
