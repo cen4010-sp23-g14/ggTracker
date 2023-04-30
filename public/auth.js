@@ -7,7 +7,7 @@ import {
   onAuthStateChanged,
   signOut
 } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-auth.js";
-import { getFirestore, addDoc, collection } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-firestore.js"
+import { getFirestore, doc, addDoc, setDoc, collection } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-firestore.js"
 
 const firebaseConfig = {
   apiKey: "AIzaSyBC3aTDX9UFi28v1mWQwWwa1LcfGo0j7zc",
@@ -22,6 +22,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getFirestore(app);
+const usersCollectionRef = collection(db, 'users');
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
@@ -36,11 +37,11 @@ onAuthStateChanged(auth, (user) => {
     // not logged in 
     let url = window.location.href;
     console.log(url);
-    if (url.includes('settings.html') || url.includes('list.html')) {
-      //ERROR
-      alert("YOU DON'T BELONG HERE, VILE SCUM");
-      window.location = "/index.html";
-    }
+    // if (url.includes('settings.html') || url.includes('list.html')) {
+    //   //ERROR
+    //   alert("YOU DON'T BELONG HERE, VILE SCUM");
+    //   window.location = "/index.html";
+    // }
   }
 });
 
@@ -53,6 +54,7 @@ if (logoutButton != null) {
 function logout() {
   signOut(auth).then(() => {
     alert("Sign out successful");
+    localStorage.clear();
     window.location = '/index.html';
   }).catch((error) => {
     alert("Error signing out");
@@ -63,20 +65,25 @@ function createNewAccount(auth, email, password) {
   createUserWithEmailAndPassword(auth, email, password)
     .then(async (userCredential) => {
       // Signed in
-      const user = userCredential.user;
+      const user = auth.currentUser;
+      let id = String(user.uid);
       localStorage.setItem('email', email);
-      await setDoc(doc(db, "users", userCredential.uid));
-      alert("Welcome to GGTracker, " + userCredential.user.value);
       
+      let loginAnchor = document.querySelector(".login-name__anchor");
+      loginAnchor.innerHTML = email;
+
+      await setDoc(doc(db, "users", id), {
+        email: email,
+        wishlist: "false",
+        backlog: "false"
+      });
     })
     .catch((error) => {
       console.log("Error on create account: ", error);
       const errorCode = error.code;
       const errorMessage = error.message;
-      // ..
     });
-}
-
+  }
 function signIntoAccount(auth, email, password) {
   signInWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
@@ -84,7 +91,9 @@ function signIntoAccount(auth, email, password) {
     const user = userCredential.user;
     alert("Welcome back, " + email);
     localStorage.setItem('email', email);
-    // ...
+
+    let loginAnchor = document.querySelector(".login-name__anchor");
+      loginAnchor.innerHTML = email;
   })
   .catch((error) => {
     alert("Account does not exist!");
@@ -118,60 +127,54 @@ document.addEventListener("DOMContentLoaded", () => {
   navUserButton.addEventListener("click", appearLogin);
 
   let exitButton = document.querySelector(".login-popup__header");
-  exitButton.addEventListener("click", hideLogin);
+  if (exitButton != null) {
+    exitButton.addEventListener("click", hideLogin);
+  }
 
   let signinForm = document.querySelector(".sign-in__form");
   let createAccountForm = document.querySelector(".create-acc__form");
-  signinForm.addEventListener("submit", (e) => {
-    e.preventDefault();
+  if (signinForm != null) {
+    signinForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+  
+      let username = document.querySelector("#sign-in__username");
+      let password = document.querySelector("#sign-in__password");
+  
+      if (username.value == "" || password.value == "") {
+        alert("Please enter username and password");
+        // Throw Error
+      } else {
+        signIntoAccount(auth, username.value, password.value);
+        // Compute Normally
+        hideLogin();
+      }
+    });
+  }
 
-    let username = document.querySelector("#sign-in__username");
-    let password = document.querySelector("#sign-in__password");
-
-    if (username.value == "" || password.value == "") {
-      alert("Please enter username and password");
-      // Throw Error
-    } else {
-      signIntoAccount(auth, username.value, password.value);
-      // Compute Normally
-      hideLogin();
-    }
-  });
-  createAccountForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    let username = document.querySelector("#create-acc__username");
-    let passwordFirst = document.querySelector("#create-acc__password_1");
-    let passwordSecond = document.querySelector("#create-acc__password_2");
-
-    if (
-      username.value == "" ||
-      passwordFirst.value == "" ||
-      passwordSecond.value == ""
-    ) {
-      alert("Please enter username and password");
-      // Throw Error
-    } else if (passwordFirst.value != passwordSecond.value) {
-      alert("Passwords do not match");
-      // Throw Error
-    } else {
-        console.log("The email passed in is: ", username.value);
-        console.log("The password passed in is: ", passwordSecond.value);
-      createNewAccount(auth, username.value, passwordSecond.value);
-      hideLogin();
-    }
-  });
+  if (createAccountForm != null) {
+    createAccountForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+  
+      let username = document.querySelector("#create-acc__username");
+      let passwordFirst = document.querySelector("#create-acc__password_1");
+      let passwordSecond = document.querySelector("#create-acc__password_2");
+  
+      if (
+        username.value == "" ||
+        passwordFirst.value == "" ||
+        passwordSecond.value == ""
+      ) {
+        alert("Please enter username and password");
+        // Throw Error
+      } else if (passwordFirst.value != passwordSecond.value) {
+        alert("Passwords do not match");
+        // Throw Error
+      } else {
+          console.log("The email passed in is: ", username.value);
+          console.log("The password passed in is: ", passwordSecond.value);
+        createNewAccount(auth, username.value, passwordSecond.value);
+        hideLogin();
+      }
+    });
+  }
 });
-
-/*
-try {
-  const docRef = await addDoc(collection(db, "users"), {
-    first: "Ada",
-    last: "Lovelace",
-    born: 1815
-  });
-  console.log("Document written with ID: ", docRef.id);
-} catch (e) {
-  console.error("Error adding document: ", e);
-}
-*/

@@ -2,13 +2,13 @@
   "emulators": {
     "functions": {
       "host": "127.0.0.1",
-      "port": "4321"
+      "port": "1357"
     },
     "firestore": {
-      "port": 8080
+      "port": 8085
     },
     "hosting": {
-      "port": 5005
+      "port": 5008
     },
     "ui": {
       "enabled": true

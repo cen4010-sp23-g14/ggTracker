@@ -49,10 +49,10 @@
             <img src="assets/img/GGTracker_Logo_V2.png" alt="GGTracker Logo" class="header-logo">
         </a>
 
-        <nav id="navbar" class="navbar">
+        <nav id="navbar" class="navbar hidden">
             <ul>
                 <li><a href="index.html" class="active">Trending</a></li>
-                <li><a href="about.html">My Lists</a></li>
+                <li><a href="settings.html">My Lists</a></li>
                 <li class="dropdown"><a href="#"><span>Filter by Category</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul>
                         <li><a href="gallery.html">Action</a></li>
@@ -114,7 +114,7 @@
                             <span>BACKLOG</span><br>
                             <span>★</span>
                         </div>
-                        <div class="side-tab add-to-custom__button">
+                        <div class="side-tab add-to-custom__button hidden">
                             <p>ADD TO</p>
                             <span>CUSTOM LIST</span><br>
                             <span>★</span>
@@ -430,7 +430,7 @@
         <input type="text" name="signIn" id="sign-in__username" placeholder="Enter Username">
         <p>Password</p>
         <input type="text" name="password" id="sign-in__password" placeholder="Enter Password">
-        <button type="submit" value="submit">Create Account</button>
+        <button type="submit" value="submit">Sign In</button>
       </form>
     </div>
     <div class="green-box"></div>
@@ -443,7 +443,7 @@
         <input type="text" name="password" id="create-acc__password_1" placeholder="Enter Password">
         <p>Re-Type Password</p>
         <input type="text" name="password" id="create-acc__password_2" placeholder="Re-enter Password">
-        <button type="submit" value="submit">Sign In</button>
+        <button type="submit" value="submit">Create Account</button>
       </form>
       
     </div>
@@ -456,7 +456,7 @@
   <div class="lists-popup__container">
     <div class="lists-popup__header">
       <button type="button">&#10005</button>
-      <button type="button" class="create-custom-list__button">Create New List</button>
+      <button type="button" class="create-custom-list__button hidden">Create New List</button>
       <h3>Select your list</h3>
     </div>
     <div class="lists-popup__body">

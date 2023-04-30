@@ -51,7 +51,6 @@ function buildHomeScreen(gamesList) {
             image = `<img src="${gamesList[i].coverUrl}" alt="${gamesList[i].name}" class="img-fluid cover-image"/>`;
         } else {
             image = `<img src="assets/img/cover-not-found.png" alt="${gamesList[i].name}" class="img-fluid cover-image"/>`;
-            image.src = "assets/img/cover-not-found.png"
         }
 
         imageSettings

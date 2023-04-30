@@ -419,6 +419,10 @@ h6 {
     padding: 15px;
 }
 
+.login-name__button, .login-name__anchor {
+    padding: 15px;
+}
+
 .header .login-name * {
     cursor: pointer;
     color: #d7d7d7 !important;
@@ -985,6 +989,10 @@ h6 {
     color: #0e2715;
 }
 
+.settings-nav-container {
+    min-width: 15vw; 
+}
+
 .settings-nav-container > button {
     margin-bottom: 24px;
 }
@@ -998,6 +1006,12 @@ h6 {
 .settings-nav-container > button[aria-selected="false"]:hover {
     color: #ffffff !important;
 } 
+
+.settings-username__wrapper {
+    font-size: 4vh;
+    text-transform: uppercase;
+    margin-left: 24px;
+}
 
 .change-name__tab-contents {
     display: flex;
@@ -1029,7 +1043,7 @@ h6 {
     margin: auto;
     cursor: pointer;
 }
-.list-item__mini:hover {
+.tab-container .game-list__item:hover {
     transition: all 130ms ease-in-out;
     transform: scale(1.05);
 }
@@ -1060,6 +1074,14 @@ h6 {
     border: none;
     border-radius: 8px;
     color: #0e2715;
+}
+
+.no-list-text {
+    font-size: 2vh;
+    color: #d7d7d7;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 }
 
 @media (min-width: 1560px) {
@@ -1969,11 +1991,11 @@ p {
 --------------------------------------------------------------*/
 
 .list-banner {
-    display: grid;
+    /* display: grid;
     grid-template-columns: auto auto 20%;
-    grid-gap: 1vw;
+    grid-gap: 1vw; */
     width: 100%;
-    background-color: #383439;
+    /* background-color: #383439; */
     border-radius: 24px;
     padding: 12px;
     margin-bottom: 28px;
@@ -2055,7 +2077,7 @@ p {
     color: #0e2715;
 }
 
-.game-list__item img {
+.game-list__item img, .game-list__item2 img {
     border: none !important;
 }
 
@@ -2085,7 +2107,7 @@ p {
     vertical-align: top;
 }
 
-.game-list__item {
+.game-list__item, .game-list__item2 {
     align-items: center !important;
     max-width: 32vh !important;
     height: 100% !important;
@@ -2172,6 +2194,11 @@ p {
         grid-template-columns: 49% auto 49%;
         padding: 0px 32px 24px 32px;
         justify-content: space-between;
+        padding: 0px 32px 24px 32px;
+    }
+
+    .login-popup__wrapper button {
+        
     }
     
     .login-popup__grid-item {
@@ -2223,7 +2250,16 @@ p {
         display: none;
     }
 
-    .login-popup button {
+    .login-popup button:hover {
+        transition: 0.3s;
+        opacity: 1;
+        background-color: #5bd9a9;
+        border: none;
+        border-radius: 8px;
+        color: #0e2715;
+    }
+
+    .login-popup__header button, .login-popup button {
         font-family: var(--font-primary);
         letter-spacing: 1px;
         font-size: 13px;
@@ -2235,8 +2271,7 @@ p {
         border-radius: 12px;
         color: #161616;
         padding: 12px;
-    }
-    .login-popup button:hover, 
+    } 
     .login-popup__header button:hover {
         transition: 0.3s;
         opacity: 1;
@@ -2276,10 +2311,6 @@ p {
         width: 100vw;
         height: 100vh;
         background-color: rgba(52, 43, 56, 0.9);
-    }
-    
-    .login-popup__wrapper {
-        padding: 0px 32px 24px 32px;
     }
     
     .login-popup__grid-item {
