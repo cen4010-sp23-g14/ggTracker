@@ -39,7 +39,7 @@ app.post("/processGameData", async (req, res) => {
         "Client-ID": process.env.TWITCH_CLIENT_ID,
         "Authorization": "bearer " + process.env.TWITCH_APP_ACCESS_TOKEN,
       },
-      data: "limit 200; fields artworks.image_id,bundles,category,cover.image_id,cover.game_localization.cover.image_id,genres.name,involved_companies,name,parent_game,platforms,rating,rating_count,release_dates,screenshots.image_id,summary,total_rating,total_rating_count,url,videos; where rating >= 95; sort rating desc; where rating != null;",
+      data: "limit 200; fields artworks.image_id,bundles,category,cover.image_id,cover.game_localization.cover.image_id,genres.name,involved_companies,name,parent_game,platforms,rating,rating_count,release_dates,screenshots.image_id,summary,total_rating,total_rating_count,url,videos; where rating >= 10; sort rating desc; where rating != null;",
     })
         .then((response) => {
           gamesList = response.data;

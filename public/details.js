@@ -31,15 +31,10 @@ let retrievedGameSummary = localStorage.getItem("gameSummary");
 let retrievedCoverUrl = localStorage.getItem("coverUrl");
 let retrievedBannerArt = localStorage.getItem("bannerArt");
 let retrievedRatingCount = localStorage.getItem("ratingCount");
+let retrievedTotalRating = localStorage.getItem("totalRating");
 
 let retrievedScreenshots = JSON.parse(localStorage.getItem("screenshots"));
 let retrievedGenres = JSON.parse(localStorage.getItem("genres"));
-
-// console.log("The list of screenshots is: ", retrievedScreenshots);
-// console.log("The first screenshot id is: ",
-// retrievedScreenshots[0][0].image_id); console.log("The list of genres is: ",
-// retrievedGenres); console.log("The first genre is: ",
-// retrievedGenres[0][0].name);
 
 function setNavBarEmail() {
     let retrievedEmail = localStorage.getItem('email');
@@ -87,6 +82,9 @@ function buildDetailsScreen() {
             genreContainer
             .append(p);
     }
+
+    // add ratings code 
+    generateRatingInfo(retrievedTotalRating);
 
     // add screenshots for the gallery here let galleryUrl =
     // `https://images.igdb.com/igdb/image/upload/t_screenshot_huge/${image_id}.jpg`
@@ -244,6 +242,34 @@ function buildDetailsScreen() {
 
     let exitButton = document.querySelector('.lists-popup__header button');
     exitButton.addEventListener("click", hideListSelect);
+}
+
+function generateRatingInfo(rating) {
+    switch(true) {
+        case (rating > 0 && rating <= 49):
+            document.querySelector(".ratings-stars p").textContent = `★ `;
+            document.querySelector(".ratings-title span").textContent = `Poor`;
+        break;
+        case (rating >= 50 && rating <= 84):
+            document.querySelector(".ratings-stars p").textContent = `★ ★ `;
+            document.querySelector(".ratings-title span").textContent = `Fair`;
+        break;
+        case (rating >= 85 && rating <= 93):
+            document.querySelector(".ratings-stars p").textContent = `★ ★ ★`;
+            document.querySelector(".ratings-title span").textContent = `Good`;
+        break;
+        case (rating >= 94 && rating <= 97):
+            document.querySelector(".ratings-stars p").textContent = `★ ★ ★ ★`;
+            document.querySelector(".ratings-title span").textContent = `Great`;
+        break;
+        case (rating >= 98 && rating <= 100):
+            document.querySelector(".ratings-stars p").textContent = `★ ★ ★ ★ ★`;
+            document.querySelector(".ratings-title span").textContent = `Amazing`;
+        break;
+        default:
+            document.querySelector(".ratings-stars p").textContent = `N/A`;
+            document.querySelector(".ratings-title span").textContent = ``;
+      } 
 }
 
 function loadDetailsScreen() {
