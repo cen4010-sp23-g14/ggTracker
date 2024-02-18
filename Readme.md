@@ -1,12 +1,14 @@
 # GG Tracker
 
-[Link](ggtracker-27309.web.app)
+[Link to Web App](ggtracker-27309.web.app)
+Deployed via FireBase
 
 Created by: **Peyton Adkins, Siobahn Devlin, Kanksha P, Jacob Goldstein, David Miloseski**
 
-**A web application for browsing through recent video game releases and adding them to backlogs or wishlists.**
+A web application for browsing through recent video game releases and adding them to backlogs or wishlists. The web app utilizes FireStore to store user information and for authentication, as well as FireBase for deployment. The video game data is collected from the [IGDB Video Game API](https://www.igdb.com/api) and is displayed in the homepage.
 
 <img src='./Kapture.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
 
 ## Required Features
 
